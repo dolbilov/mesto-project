@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mesto</title>
 
+    <link rel="shortcut icon" href="./images/favicon.svg" type="image/x-icon" />
     <link rel="stylesheet" href="./pages/index.css" />
   </head>
   <body class="page">
@@ -20,11 +21,116 @@
     </header>
     <!-- /.header -->
 
-    <main>
-      <section class="profile"></section>
+    <main class="content">
+      <section class="profile">
+        <div class="profile__info">
+          <img
+            src="./images/profile-image.jpg"
+            alt="Фото профиля."
+            class="profile__image"
+          />
+          <div class="profile__text">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <p class="profile__description">Исследователь океана</p>
+          </div>
+          <!-- /.profile__text -->
+        </div>
+        <!-- /.profile__info -->
+        <button class="profile__add-button"></button>
+      </section>
       <!-- /.profile -->
 
-      <section class="cards"></section>
+      <section class="cards">
+        <!-- Card 1 -->
+        <div class="card">
+          <img
+            src="./images/photos/dombay.jpg"
+            alt="Домбай."
+            class="card__image"
+          />
+          <div class="card__content">
+            <h2 class="card__heading">Домбай</h2>
+            <button class="card__like-button"></button>
+          </div>
+          <!-- /.card__content -->
+        </div>
+        <!-- /.card -->
+
+        <!-- Card 2 -->
+        <div class="card">
+          <img
+            src="./images/photos/elbrus.jpg"
+            alt="Гора Эльбрус."
+            class="card__image"
+          />
+          <div class="card__content">
+            <h2 class="card__heading">Гора Эльбрус</h2>
+            <button class="card__like-button"></button>
+          </div>
+          <!-- /.card__content -->
+        </div>
+        <!-- /.card -->
+
+        <!-- Card 3 -->
+        <div class="card">
+          <img
+            src="./images/photos/karachay-cherkessia.jpg"
+            alt="Карачаево-Черкесия"
+            class="card__image"
+          />
+          <div class="card__content">
+            <h2 class="card__heading">Карачаево-Черкесия</h2>
+            <button class="card__like-button"></button>
+          </div>
+          <!-- /.card__content -->
+        </div>
+        <!-- /.card -->
+
+        <!-- Card 4 -->
+        <div class="card">
+          <img
+            src="./images/photos/moscow.png"
+            alt="Московский Кремль."
+            class="card__image"
+          />
+          <div class="card__content">
+            <h2 class="card__heading">Москва</h2>
+            <button class="card__like-button"></button>
+          </div>
+          <!-- /.card__content -->
+        </div>
+        <!-- /.card -->
+
+        <!-- Card 5 -->
+        <div class="card">
+          <img
+            src="./images/photos/new-york.png"
+            alt="Нью-Йорк"
+            class="card__image"
+          />
+          <div class="card__content">
+            <h2 class="card__heading">Нью-Йорк</h2>
+            <button class="card__like-button"></button>
+          </div>
+          <!-- /.card__content -->
+        </div>
+        <!-- /.card -->
+
+        <!-- Card 6 -->
+        <div class="card">
+          <img
+            src="./images/photos/statue-of-liberty.png"
+            alt="Статуя Свободы."
+            class="card__image"
+          />
+          <div class="card__content">
+            <h2 class="card__heading">Статуя Свободы</h2>
+            <button class="card__like-button"></button>
+          </div>
+          <!-- /.card__content -->
+        </div>
+        <!-- /.card -->
+      </section>
       <!-- /.cards -->
     </main>
 
