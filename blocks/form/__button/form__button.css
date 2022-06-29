@@ -1,13 +1,15 @@
 .form__button {
   background: #000;
   border-radius: 2px;
+  border: none;
   color: #fff;
+  cursor: pointer;
   font-family: 'Inter', Arial, sans-serif;
   font-size: 18px;
   font-weight: 400;
   line-height: 22px;
-  text-align: center;
   padding: 14px 125px;
+  text-align: center;
   transition: opacity 0.2s ease-in-out;
 }
 

@@ -4,8 +4,8 @@
   display: flex;
   gap: 60px;
   justify-content: space-between;
-  max-width: 1280px;
-  padding: 40px 200px 0;
+  max-width: 880px;
+  padding: 40px 0 0;
   width: 100%;
 }
 
