@@ -4,6 +4,7 @@
   border-radius: 2px;
   border: 2px solid #ffffff;
   box-sizing: border-box;
+  cursor: pointer;
   height: 50px;
   outline: none;
   padding: 0;
@@ -18,6 +19,7 @@
 
 @media screen and (max-width: 1079px) {
   .profile__add-button {
+    background-size: 16px 16px;
     width: 282px;
   }
 }

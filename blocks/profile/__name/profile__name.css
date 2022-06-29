@@ -5,8 +5,12 @@
   font-weight: 500;
   line-height: 48px;
   margin: 22px 0 7px;
+  overflow: hidden;
   padding: 0;
   text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 500px;
 }
 
 .profile__name::after {
@@ -30,6 +34,7 @@
     font-size: 27px;
     line-height: 33px;
     margin-top: 0;
+    max-width: 230px;
   }
 
   .profile__name::after {
