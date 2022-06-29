@@ -1,9 +1,5 @@
 .cards {
   box-sizing: border-box;
-  display: grid;
-  gap: 20px 17px;
-  grid-template: repeat(2, 361px) / repeat(3, 282px);
-  justify-content: center;
   max-width: 1280px;
   padding: 50px 200px 0;
   width: 100%;
@@ -11,6 +7,6 @@
 
 @media screen and (max-width: 767px) {
   .cards {
-    grid-template: repeat(6, 361px) / 282px;
+    padding: 36px 19px 0;
   }
 }

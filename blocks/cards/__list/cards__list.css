@@ -1,0 +1,15 @@
+.cards__list {
+  display: grid;
+  gap: 20px 17px;
+  grid-template: repeat(2, 361px) / repeat(3, 282px);
+  justify-content: center;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .cards__list {
+    grid-template: repeat(6, 361px) / 282px;
+  }
+}

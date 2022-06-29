@@ -1,5 +1,6 @@
 .header {
   box-sizing: border-box;
+  font-size: 0;
   max-width: 1280px;
   padding: 45px 200px 0;
   width: 100%;
