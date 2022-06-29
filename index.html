@@ -10,6 +10,32 @@
     <link rel="stylesheet" href="./pages/index.css" />
   </head>
   <body class="page">
+    <div class="popup popup_opened">
+      <div class="form">
+        <h2 class="form__heading">Редактировать профиль</h2>
+        <form method="post" class="form__elements">
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Имя"
+            class="form__input"
+            value="Жак-Ив Кусто"
+          />
+          <input
+            type="text"
+            name="about"
+            id="about"
+            placeholder="О себе"
+            class="form__input"
+          />
+          <button type="submit" class="form__button">Сохранить</button>
+        </form>
+      </div>
+      <!-- /.form -->
+    </div>
+    <!-- /.popup -->
+
     <header class="header">
       <img
         src="./images/logo/logo_light.svg"

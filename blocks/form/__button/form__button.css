@@ -1,18 +1,24 @@
-.profile__description {
+.form__button {
+  background: #000;
+  border-radius: 2px;
   color: #fff;
   font-family: 'Inter';
   font-size: 18px;
   font-weight: 400;
   line-height: 22px;
-  margin: 0;
-  padding: 0;
   text-align: center;
-  width: fit-content;
+  padding: 14px 125px;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.form__button:hover {
+  opacity: 0.8;
 }
 
 @media screen and (max-width: 1023px) {
-  .profile__description {
+  .form__button {
     font-size: 14px;
     line-height: 17px;
+    padding: 14px 82px;
   }
 }

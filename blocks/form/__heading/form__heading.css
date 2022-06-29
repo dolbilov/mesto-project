@@ -1,0 +1,16 @@
+.form__heading {
+  color: #000;
+  font-family: 'Inter';
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 29px;
+  margin: 0 0 48px;
+}
+
+@media screen and (max-width: 1023px) {
+  .form__heading {
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 75px;
+  }
+}
