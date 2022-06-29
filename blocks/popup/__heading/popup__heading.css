@@ -1,4 +1,4 @@
-.form__heading {
+.popup__heading {
   color: #000;
   font-family: 'Inter', Arial, sans-serif;
   font-size: 24px;
@@ -8,7 +8,7 @@
 }
 
 @media screen and (max-width: 1023px) {
-  .form__heading {
+  .popup__heading {
     font-size: 18px;
     line-height: 22px;
     margin-bottom: 75px;
