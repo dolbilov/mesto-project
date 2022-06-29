@@ -1,32 +1,17 @@
 .profile__name {
   color: #fff;
+  display: inline-block;
   font-family: 'Inter', Arial, sans-serif;
   font-size: 42px;
   font-weight: 500;
   line-height: 48px;
   margin: 22px 0 7px;
+  max-width: 500px;
   overflow: hidden;
   padding: 0;
   text-align: center;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 500px;
-}
-
-.profile__name::after {
-  background: url(../../../images/icons/edit/edit.svg) no-repeat center center;
-  content: '';
-  display: inline-block;
-  height: 24px;
-  transition: opacity 0.2s ease-in-out;
-  width: 24px;
-  position: relative;
-  top: 0;
-  left: 18px;
-}
-
-.profile__name:hover::after {
-  opacity: 0.6;
 }
 
 @media screen and (max-width: 1023px) {
@@ -35,11 +20,5 @@
     line-height: 33px;
     margin-top: 0;
     max-width: 230px;
-  }
-
-  .profile__name::after {
-    width: 18px;
-    height: 18px;
-    left: 10px;
   }
 }
