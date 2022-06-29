@@ -9,10 +9,32 @@
   text-align: center;
 }
 
-@media screen and (max-width: 767px) {
+.profile__name::after {
+  background: url(../../../images/icons/edit/edit.svg) no-repeat center center;
+  content: '';
+  display: inline-block;
+  height: 24px;
+  transition: opacity 0.2s ease-in-out;
+  width: 24px;
+  position: relative;
+  top: 0;
+  left: 18px;
+}
+
+.profile__name:hover::after {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 1023px) {
   .profile__name {
     font-size: 27px;
     line-height: 33px;
     margin-top: 0;
+  }
+
+  .profile__name::after {
+    width: 18px;
+    height: 18px;
+    left: 10px;
   }
 }

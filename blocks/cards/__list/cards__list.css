@@ -8,6 +8,12 @@
   padding: 0;
 }
 
+@media screen and (max-width: 1023px) {
+  .cards__list {
+    grid-template: repeat(3, 361px) / repeat(2, 282px);
+  }
+}
+
 @media screen and (max-width: 767px) {
   .cards__list {
     grid-template: repeat(6, 361px) / 282px;
