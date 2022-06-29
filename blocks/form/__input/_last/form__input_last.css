@@ -1,0 +1,9 @@
+.form__input_last {
+  margin-bottom: 48px;
+}
+
+@media screen and (max-width: 1023px) {
+  .form__input_last {
+    margin-bottom: 45px;
+  }
+}
