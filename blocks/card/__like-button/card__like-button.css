@@ -2,6 +2,7 @@
   background: url(../../../images/icons/like/like.svg) no-repeat center center /
     cover;
   border: none;
+  cursor: pointer;
   flex-shrink: 0;
   height: 19px;
   margin: 0;
