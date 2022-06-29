@@ -6,7 +6,8 @@
 
 @media screen and (max-width: 767px) {
   .profile__info {
+    align-items: center;
     flex-direction: column;
-    gap: 26px;
+    gap: 23px;
   }
 }
