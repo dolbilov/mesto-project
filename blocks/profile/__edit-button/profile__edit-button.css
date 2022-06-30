@@ -1,6 +1,7 @@
 .profile__edit-button {
   background: url(../../../images/icons/edit/edit.svg) no-repeat center center;
   border: none;
+  cursor: pointer;
   height: 24px;
   padding: 0;
   transition: opacity 0.2s ease-in-out;

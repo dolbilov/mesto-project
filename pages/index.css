@@ -5,14 +5,13 @@
 
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
-@import url(../blocks/popup/__form/popup__form.css);
+@import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__heading/popup__heading.css);
+@import url(../blocks/popup/__close-button/popup__close-button.css);
 
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__input/form__input.css);
-@import url(../blocks/form/__input/_last/form__input_last.css);
 @import url(../blocks/form/__button/form__button.css);
-@import url(../blocks/form/__close-button/form__close-button.css);
 
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);

@@ -13,8 +13,16 @@
   padding: 0 0 13px;
 }
 
+.form__input:last-of-type {
+  margin-bottom: 48px;
+}
+
 @media screen and (max-width: 1023px) {
   .form__input {
     margin-bottom: 30px;
+  }
+
+  .form__input:last-of-type {
+    margin-bottom: 45px;
   }
 }
