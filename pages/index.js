@@ -106,3 +106,23 @@ function deleteCard(evt) {
   const card = evt.target.closest('.card');
   card.remove();
 }
+
+/* Card add popup */
+const addButton = document.querySelector('.profile__add-button');
+const cardPopup = document.querySelector('.popup_type_card');
+addButton.addEventListener('click', () =>
+  cardPopup.classList.add('popup_opened')
+);
+
+const cardHeading = cardPopup.querySelector('#place-heading');
+const cardLink = cardPopup.querySelector('#link');
+
+function addCard(evt) {
+  evt.preventDefault();
+  renderCard(cardHeading.value, cardLink.value);
+  cardHeading.value = '';
+  cardLink.value = '';
+  closePopup(cardPopup);
+}
+
+cardPopup.querySelector('.form__button').addEventListener('click', addCard);

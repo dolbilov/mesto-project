@@ -74,11 +74,38 @@
           />
           <button type="submit" class="form__button">Сохранить</button>
           <button type="button" class="popup__close-button"></button>
+          <!-- TODO: move out the form -->
         </form>
       </div>
-      <!-- /.form -->
+      <!-- /.popup__container -->
     </div>
-    <!-- /.popup -->
+    <!-- /.popup popup_type_profile -->
+
+    <div class="popup popup_type_card">
+      <div class="popup__container">
+        <h2 class="popup__heading">Новое место</h2>
+        <form method="post" class="form" name="card">
+          <input
+            type="text"
+            name="place-heading"
+            id="place-heading"
+            placeholder="Название"
+            class="form__input"
+          />
+          <input
+            type="text"
+            name="link"
+            id="link"
+            placeholder="Ссылка на картинку"
+            class="form__input"
+          />
+          <button type="submit" class="form__button">Создать</button>
+        </form>
+        <button type="button" class="popup__close-button"></button>
+      </div>
+      <!-- /.popup__container -->
+    </div>
+    <!-- /.popup popup_type_card -->
 
     <template id="card">
       <li class="card">
