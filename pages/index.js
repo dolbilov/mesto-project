@@ -89,6 +89,10 @@ function renderCard(name, link) {
       evt.target.classList.toggle('card__like-button_active');
     });
 
+  cardElement
+    .querySelector('.card__delete-button')
+    .addEventListener('click', deleteCard);
+
   cardsContainer.append(cardElement);
 }
 
@@ -97,3 +101,8 @@ function renderCards() {
 }
 
 renderCards();
+
+function deleteCard(evt) {
+  const card = evt.target.closest('.card');
+  card.remove();
+}
