@@ -45,3 +45,55 @@ document
   .addEventListener('click', renderProfilePopup);
 
 profileSaveButton.addEventListener('click', saveProfilePopup);
+
+/* Cards */
+const cardsContainer = document.querySelector('.cards__list');
+const cardTemplate = document.querySelector('#card').content;
+const cards = [
+  {
+    name: 'Домбай',
+    link: './images/photos/dombay.jpg',
+  },
+  {
+    name: 'Гора Эльбрус',
+    link: './images/photos/elbrus.jpg',
+  },
+  {
+    name: 'Карачаево-Черкесия',
+    link: './images/photos/karachay-cherkessia.jpg',
+  },
+  {
+    name: 'Московский Кремль',
+    link: './images/photos/moscow.png',
+  },
+  {
+    name: 'Нью-Йорк',
+    link: './images/photos/new-york.png',
+  },
+  {
+    name: 'Статуя Свободы',
+    link: './images/photos/statue-of-liberty.png',
+  },
+];
+
+function renderCard(name, link) {
+  const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
+  cardElement.querySelector('.card__heading').textContent = name;
+  const cardImage = cardElement.querySelector('.card__image');
+  cardImage.src = link;
+  cardImage.alt = name;
+
+  cardElement
+    .querySelector('.card__like-button')
+    .addEventListener('click', (evt) => {
+      evt.target.classList.toggle('card__like-button_active');
+    });
+
+  cardsContainer.append(cardElement);
+}
+
+function renderCards() {
+  cards.forEach((item) => renderCard(item.name, item.link));
+}
+
+renderCards();
