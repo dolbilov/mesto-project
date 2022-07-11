@@ -93,7 +93,7 @@ function renderCard(name, link) {
     .querySelector('.card__delete-button')
     .addEventListener('click', deleteCard);
 
-  cardsContainer.append(cardElement);
+  cardsContainer.prepend(cardElement);
 }
 
 function renderCards() {
