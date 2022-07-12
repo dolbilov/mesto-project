@@ -44,7 +44,7 @@ document
   .querySelector('.profile__edit-button')
   .addEventListener('click', renderProfilePopup);
 
-profileSaveButton.addEventListener('click', saveProfilePopup);
+profileForm.addEventListener('submit', saveProfilePopup);
 
 /* Cards */
 const cardsContainer = document.querySelector('.cards__list');
