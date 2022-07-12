@@ -48,8 +48,8 @@ profileForm.addEventListener('submit', saveProfilePopup);
 
 // Image popup
 const imagePopup = document.querySelector('.popup_type_image');
-
-function renderImagePopup() {}
+const imagePopupImage = imagePopup.querySelector('.popup__image');
+const imagePopupHeading = imagePopup.querySelector('.popup__image-heading');
 
 /* Cards */
 const cardsContainer = document.querySelector('.cards__list');
@@ -81,12 +81,25 @@ const cards = [
   },
 ];
 
+function renderCardPopup(evt) {
+  openPopup(imagePopup);
+
+  const cardImage = evt.target;
+  const card = cardImage.closest('.card');
+  const cardHeading = card.querySelector('.card__heading');
+
+  imagePopupImage.src = cardImage.src;
+  imagePopupImage.alt = cardHeading.textContent;
+  imagePopupHeading.textContent = cardHeading.textContent;
+}
+
 function renderCard(name, link) {
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   cardElement.querySelector('.card__heading').textContent = name;
   const cardImage = cardElement.querySelector('.card__image');
   cardImage.src = link;
   cardImage.alt = name;
+  cardImage.addEventListener('click', renderCardPopup);
 
   cardElement
     .querySelector('.card__like-button')
