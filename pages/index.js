@@ -116,6 +116,7 @@ addButton.addEventListener('click', () =>
 
 const cardHeading = cardPopup.querySelector('#place-heading');
 const cardLink = cardPopup.querySelector('#link');
+const cardForm = cardPopup.querySelector('.form');
 
 function addCard(evt) {
   evt.preventDefault();
@@ -125,4 +126,4 @@ function addCard(evt) {
   closePopup(cardPopup);
 }
 
-cardPopup.querySelector('.form__button').addEventListener('click', addCard);
+cardForm.addEventListener('submit', addCard);
