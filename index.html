@@ -42,7 +42,7 @@
       </section>
       <!-- /.profile -->
 
-      <section class="cards">
+      <section class="cards" aria-label="Карточки.">
         <ul class="cards__list"></ul>
         <!-- /.cards__list -->
       </section>
@@ -54,7 +54,7 @@
     </footer>
     <!-- /.footer -->
 
-    <div class="popup popup_type_profile">
+    <div class="popup popup_type_profile popup_opened">
       <div class="popup__container">
         <h2 class="popup__heading">Редактировать профиль</h2>
         <form method="post" class="form" name="profile">
@@ -73,9 +73,8 @@
             class="form__input"
           />
           <button type="submit" class="form__button">Сохранить</button>
-          <button type="button" class="popup__close-button"></button>
-          <!-- TODO: move out the form -->
         </form>
+        <button type="button" class="popup__close-button"></button>
       </div>
       <!-- /.popup__container -->
     </div>
