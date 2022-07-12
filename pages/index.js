@@ -46,6 +46,11 @@ document
 
 profileForm.addEventListener('submit', saveProfilePopup);
 
+// Image popup
+const imagePopup = document.querySelector('.popup_type_image');
+
+function renderImagePopup() {}
+
 /* Cards */
 const cardsContainer = document.querySelector('.cards__list');
 const cardTemplate = document.querySelector('#card').content;
