@@ -11,6 +11,7 @@
   transition: opacity 0.2s ease-in-out;
   background: url(../../../images/icons/trash.svg) no-repeat center center /
     cover;
+  z-index: 2;
 }
 
 .card__delete-button:hover {
