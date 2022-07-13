@@ -1,9 +1,10 @@
 .card__image {
-  width: 282px;
-  min-height: 282px;
+  cursor: pointer;
   max-height: 282px;
+  min-height: 282px;
   object-fit: cover;
   transition: filter 0.2s ease-in-out;
+  width: 282px;
 }
 
 .card__image:hover {
