@@ -56,28 +56,28 @@ const cardsContainer = document.querySelector('.cards__list');
 const cardTemplate = document.querySelector('#card').content;
 const cards = [
   {
-    name: 'Домбай',
-    link: './images/photos/dombay.jpg',
+    name: 'Бруклинский Мост',
+    link: './images/photos/brooklyn-bridge.jpg',
   },
   {
-    name: 'Гора Эльбрус',
-    link: './images/photos/elbrus.jpg',
+    name: 'Москва',
+    link: './images/photos/moscow.jpg',
   },
   {
-    name: 'Карачаево-Черкесия',
-    link: './images/photos/karachay-cherkessia.jpg',
-  },
-  {
-    name: 'Московский Кремль',
-    link: './images/photos/moscow.png',
+    name: 'Метро Москвы',
+    link: './images/photos/moscow-subway.jpg',
   },
   {
     name: 'Нью-Йорк',
-    link: './images/photos/new-york.png',
+    link: './images/photos/new-york.jpg',
+  },
+  {
+    name: 'Зеленоград',
+    link: './images/photos/zelenograd.jpg',
   },
   {
     name: 'Статуя Свободы',
-    link: './images/photos/statue-of-liberty.png',
+    link: './images/photos/statue-of-liberty.jpg',
   },
 ];
 
