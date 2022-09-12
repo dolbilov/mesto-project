@@ -5,12 +5,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mesto</title>
-    <link rel="shortcut icon" href="./images/favicon.svg" type="image/x-icon" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="<%= require('./images/favicons/apple-touch-icon.png') %>"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="<%= require('./images/favicons/favicon-32x32.png') %>"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="<%= require('./images/favicons/favicon-16x16.png') %>"
+    />
+    <link
+      rel="manifest"
+      href="<%= require('./images/favicons/site.webmanifest') %>"
+    />
+    <link
+      rel="mask-icon"
+      href="<%= require('./images/favicons/safari-pinned-tab.svg') %>"
+      color="#5bbad5"
+    />
+    <link
+      rel="shortcut icon"
+      href="<%= require('./images/favicons/favicon.ico') %>"
+    />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta
+      name="msapplication-config"
+      content="<%= require('./images/favicons/browserconfig.xml') %>"
+    />
+    <meta name="theme-color" content="#ffffff" />
   </head>
   <body class="page">
     <header class="header">
       <img
-        src="./images/logo/logo_light.svg"
+        src="<%= require('./images/logo/logo_light.svg') %>"
         alt="Mesto."
         class="header__logo"
       />
@@ -21,7 +56,7 @@
       <section class="profile">
         <div class="profile__info">
           <img
-            src="./images/profile-image.jpg"
+            src="<%=require('./images/profile-image.jpg')%>"
             alt="Фото профиля."
             class="profile__image"
           />
