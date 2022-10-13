@@ -1,4 +1,8 @@
+# IDE settings
 .prettierrc.json
+
+# Built version if site
+/dist
 
 # Created by https://www.toptal.com/developers/gitignore/api/macos,visualstudiocode,node
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,visualstudiocode,node
