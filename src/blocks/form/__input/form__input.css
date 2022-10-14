@@ -8,21 +8,14 @@
   font-weight: 400;
   height: 27px;
   line-height: 17px;
-  margin-bottom: 30px;
+  margin-bottom: 5px;
   outline: none;
   padding: 0 0 13px;
 }
 
-.form__input:last-of-type {
-  margin-bottom: 48px;
-}
-
+/* TODO: check params for mobile and tablet version */
 @media screen and (max-width: 1023px) {
   .form__input {
-    margin-bottom: 30px;
-  }
-
-  .form__input:last-of-type {
-    margin-bottom: 45px;
+    margin-bottom: 5px;
   }
 }
