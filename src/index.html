@@ -6,9 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mesto</title>
 
-    <link rel="shortcut icon" href="./images/favicon.svg" type="image/x-icon" />
-    <link rel="stylesheet" href="./pages/index.css" />
+    <!-- Favicons -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="<%= require('./images/favicons/apple-touch-icon.png') %>"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="<%= require('./images/favicons/favicon-32x32.png') %>"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="<%= require('./images/favicons/favicon-16x16.png') %>"
+    />
+    <link
+      rel="mask-icon"
+      href="<%= require('./images/favicons/safari-pinned-tab.svg') %>"
+      color="#5bbad5"
+    />
+    <link
+      rel="shortcut icon"
+      href="<%= require('./images/favicons/favicon.ico') %>"
+    />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
   </head>
+
   <body class="page">
     <header class="header">
       <img
@@ -44,7 +72,6 @@
 
       <section class="cards" aria-label="Карточки.">
         <ul class="cards__list"></ul>
-        <!-- /.cards__list -->
       </section>
       <!-- /.cards -->
     </main>
@@ -54,24 +81,37 @@
     </footer>
     <!-- /.footer -->
 
+    <!-- POPUP: profile edit -->
     <div class="popup popup_type_profile">
       <div class="popup__container">
         <h2 class="popup__heading">Редактировать профиль</h2>
-        <form method="post" class="form" name="profile">
+        <form class="form" name="profile" novalidate>
           <input
             type="text"
             name="name"
             id="name"
             placeholder="Имя"
             class="form__input"
+            required
+            minlength="2"
+            maxlength="40"
+            pattern="^[a-zA-Zа-яА-ЯёË -]*$"
+            data-error-message="Разрешено использовать только английские и русские буквы, а также пробел и дефис."
           />
+          <span class="form__error-text name-error"></span>
           <input
             type="text"
             name="about"
             id="about"
             placeholder="О себе"
             class="form__input"
+            required
+            minlength="2"
+            maxlength="200"
+            pattern="^[a-zA-Zа-яА-ЯёË -]*$"
+            data-error-message="Разрешено использовать только английские и русские буквы, а также пробел и дефис."
           />
+          <span class="form__error-text about-error"></span>
           <button type="submit" class="form__button">Сохранить</button>
         </form>
         <button type="button" class="popup__close-button"></button>
@@ -80,24 +120,33 @@
     </div>
     <!-- /.popup popup_type_profile -->
 
+    <!-- POPUP: add new card -->
     <div class="popup popup_type_card">
       <div class="popup__container">
         <h2 class="popup__heading">Новое место</h2>
-        <form method="post" class="form" name="card">
+        <form class="form" name="card" novalidate>
           <input
             type="text"
             name="place-heading"
             id="place-heading"
             placeholder="Название"
             class="form__input"
+            required
+            minlength="2"
+            maxlength="30"
+            pattern="^[a-zA-Zа-яА-ЯёË -]*$"
+            data-error-message="Разрешено использовать только английские и русские буквы, а также пробел и дефис."
           />
+          <span class="form__error-text place-heading-error"></span>
           <input
-            type="text"
+            type="url"
             name="link"
             id="link"
             placeholder="Ссылка на картинку"
             class="form__input"
+            required
           />
+          <span class="form__error-text link-error"></span>
           <button type="submit" class="form__button">Создать</button>
         </form>
         <button type="button" class="popup__close-button"></button>
@@ -106,10 +155,11 @@
     </div>
     <!-- /.popup popup_type_card -->
 
+    <!-- POPUP: card fullscreen -->
     <div class="popup popup_type_image">
       <div class="popup__image-container">
         <img src="./images/photos/zelenograd.jpg" alt="" class="popup__image" />
-        <h3 class="popup__image-heading">Зеленоград</h3>
+        <h3 class="popup__image-heading"></h3>
         <button type="button" class="popup__close-button"></button>
       </div>
       <!-- /.popup__image-container -->
@@ -120,18 +170,19 @@
       <li class="card">
         <button class="card__delete-button" type="button"></button>
         <img
-          src="./images/photos/statue-of-liberty.png"
+          src="./images/photos/brooklyn-bridge.jpg"
           alt="Статуя Свободы."
           class="card__image"
         />
         <div class="card__content">
-          <h2 class="card__heading">Статуя Свободы</h2>
+          <h2 class="card__heading">Бруклинский Мост</h2>
           <button class="card__like-button" type="button"></button>
         </div>
         <!-- /.card__content -->
       </li>
     </template>
 
-    <script src="./pages/index.js"></script>
+    <!-- <script src="./index.js"></script> -->
+    <!-- <script src="<%= require('./index.js') %>"></script> -->
   </body>
 </html>

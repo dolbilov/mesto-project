@@ -1,7 +1,8 @@
 .form__button {
   background: #000;
   border-radius: 2px;
-  border: none;
+  border: 1px solid #000;
+  box-sizing: border-box;
   color: #fff;
   cursor: pointer;
   font-family: 'Inter', Arial, sans-serif;
@@ -13,7 +14,7 @@
   transition: opacity 0.2s ease-in-out;
 }
 
-.form__button:hover {
+.form__button:not(.form__button_disabled):hover {
   opacity: 0.8;
 }
 
