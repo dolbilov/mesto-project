@@ -4,11 +4,11 @@
   font-size: 12px;
   line-height: 15px;
   color: #f00;
-  margin-bottom: 13px;
+  margin-bottom: 5px;
   min-height: 30px;
   max-width: 358px;
 }
 
 .form__error-text:last-of-type {
-  margin-bottom: 32px;
+  margin-bottom: 13px;
 }
