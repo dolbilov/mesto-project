@@ -1,6 +1,6 @@
-('use strict');
+'use strict';
 
-export const cards = [
+export const cardsData = [
   {
     name: 'Бруклинский Мост',
     link: new URL('../images/photos/brooklyn-bridge.jpg', import.meta.url),
