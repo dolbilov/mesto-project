@@ -10,8 +10,8 @@ export const cardsData = [
     link: new URL('../images/photos/moscow.jpg', import.meta.url),
   },
   {
-    name: 'Метро Москвы',
-    link: new URL('../images/photos/moscow-subway.jpg', import.meta.url),
+    name: 'Домик в горах',
+    link: new URL('../images/photos/house.jpg', import.meta.url),
   },
   {
     name: 'Нью-Йорк',
