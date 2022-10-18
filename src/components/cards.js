@@ -1,6 +1,5 @@
 'use strict';
 
-import { closePopup } from "./modal";
 import { cardsData } from "./data";
 
 function deleteCard(evt) {
@@ -31,18 +30,7 @@ export function createCard(name, link, cardTemplate, renderCardPopupCallback) {
   return cardElement;
 }
 
-export function addCard(evt, cardHeadingInput, cardLinkInput, cardsContainer, cardPopup, cardTemplate, renderCardPopupCallback) {
-  evt.preventDefault();
 
-  const tempCard = createCard(cardHeadingInput.value, cardLinkInput.value, cardTemplate, renderCardPopupCallback);
-  cardsContainer.prepend(tempCard);
-
-  // Clear form inputs
-  cardHeadingInput.value = "";
-  cardLinkInput.value = "";
-
-  closePopup(cardPopup);
-}
 
 export function renderCards(cardsContainer, cardTemplate, renderCardPopupCallback) {
   cardsData.forEach((item) => {

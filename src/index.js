@@ -7,7 +7,6 @@ import './pages/index.css';
 import * as cards from './components/cards';
 import { openPopup, closePopup } from './components/modal';
 import * as validate from './components/validate';
-import { toggleButtonState } from "./components/validate";
 
 const selectors = {
   formSelector: '.form',
@@ -95,7 +94,7 @@ addButton.addEventListener('click', () => {
   validate.hideAllInputsError(newCardPopupForm, selectors);
 
   // Toggle submit button state
-  toggleButtonState(
+  validate.toggleButtonState(
     [newCardPopupHeadingInput, newCardPopupLinkInput],
     newCardPopupSubmitButton,
     selectors
@@ -105,13 +104,12 @@ addButton.addEventListener('click', () => {
 });
 
 newCardPopupForm.addEventListener('submit', (evt) =>
-  cards.addCard(
+  addCard(
     evt,
     newCardPopupHeadingInput,
     newCardPopupLinkInput,
     cardsContainer,
     newCardPopup,
-    cardTemplate
   )
 );
 
@@ -122,6 +120,25 @@ function renderNewCardPopup(name, link) {
   previewPopupImage.src = link;
   previewPopupImage.alt = name;
   previewPopupHeading.textContent = name;
+}
+
+function addCard(evt) {
+  evt.preventDefault();
+
+  const tempCard = cards.createCard(
+    newCardPopupHeadingInput.value,
+    newCardPopupLinkInput.value,
+    cardTemplate,
+    renderNewCardPopup
+  );
+
+  cardsContainer.prepend(tempCard);
+
+  // Clear form inputs
+  newCardPopupHeadingInput.value = "";
+  newCardPopupLinkInput.value = "";
+
+  closePopup(newCardPopup);
 }
 
 cards.renderCards(cardsContainer, cardTemplate, renderNewCardPopup);
