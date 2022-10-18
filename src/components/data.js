@@ -10,7 +10,7 @@ export const cardsData = [
     link: new URL('../images/photos/moscow.jpg', import.meta.url),
   },
   {
-    name: 'Домик в горах',
+    name: 'Зимний домик',
     link: new URL('../images/photos/house.jpg', import.meta.url),
   },
   {
