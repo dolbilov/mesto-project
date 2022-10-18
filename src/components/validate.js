@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 function hasInvalidInput(inputList) {
   return inputList.some((input) => !input.validity.valid);
@@ -19,21 +19,26 @@ function showInputError(formElement, inputElement, errorMessage, selectors) {
 
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   errorElement.textContent = errorMessage;
-  errorElement.classList.add('form__input-error_active');
+  errorElement.classList.add("form__input-error_active");
 }
 
 function hideInputError(formElement, inputElement, selectors) {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.remove(selectors.inputErrorClass);
-  errorElement.classList.remove('form__input-error_active');
-  errorElement.textContent = '';
+  errorElement.classList.remove("form__input-error_active");
+  errorElement.textContent = "";
+}
+
+export function hideAllInputsError(formElement, selectors) {
+  const inputList = Array.from(formElement.querySelectorAll(selectors.inputSelector));
+  inputList.forEach((inputElement) => hideInputError(formElement, inputElement, selectors));
 }
 
 function checkInputValidity(formElement, inputElement, selectors) {
   if (inputElement.validity.patternMismatch) {
     inputElement.setCustomValidity(inputElement.dataset.errorMessage);
   } else {
-    inputElement.setCustomValidity('');
+    inputElement.setCustomValidity("");
   }
 
   if (!inputElement.validity.valid) {
@@ -61,7 +66,7 @@ function setEventListeners(formElement, selectors) {
   toggleButtonState(inputList, submitButton, selectors);
 
   inputList.forEach((inputElement) =>
-    inputElement.addEventListener('input', () => {
+    inputElement.addEventListener("input", () => {
       checkInputValidity(formElement, inputElement, selectors);
       toggleButtonState(inputList, submitButton, selectors);
     })
