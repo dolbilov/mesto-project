@@ -5,6 +5,9 @@ function hasInvalidInput(inputList) {
 }
 
 export function toggleButtonState(inputList, buttonElement, selectors) {
+  // without this string validity.valid don't update so fast
+  inputList.forEach((input) => input.setCustomValidity(''));
+
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(selectors.inactiveButtonClass);
     buttonElement.disabled = true;
