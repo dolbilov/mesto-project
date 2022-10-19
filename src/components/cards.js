@@ -1,7 +1,5 @@
 'use strict';
 
-import { cardsData } from "./data";
-
 function deleteCard(evt) {
   const card = evt.target.closest('.card');
   card.remove();
@@ -30,13 +28,4 @@ export function createCard(name, link, cardTemplate, renderCardPopupCallback) {
   return cardElement;
 }
 
-
-
-export function renderCards(cardsContainer, cardTemplate, renderCardPopupCallback) {
-  cardsData.forEach((item) => {
-      const tempCard = createCard(item.name, item.link, cardTemplate, renderCardPopupCallback);
-      cardsContainer.prepend(tempCard);
-    }
-  );
-}
 
