@@ -8,7 +8,7 @@
 .popup__heading{color:#000;font-family:Inter,Arial,sans-serif;font-size:24px;font-weight:900;line-height:29px;margin:0 0 54px}@media screen and (max-width:1023px){.popup__heading{font-size:18px;line-height:22px;margin-bottom:75px}}
 .popup__close-button{background:url(3fe207b1297e9759b9d9.svg);border:none;cursor:pointer;height:32px;margin:0;padding:0;position:absolute;right:-8px;top:-8px;transform:translate(100%,-100%);transition:opacity .2s ease-in-out;width:32px}.popup__close-button:hover{opacity:.6}@media screen and (max-width:1023px){.popup__close-button{height:20px;right:0;top:-16px;transform:translateY(-100%);width:20px}}
 .popup__image-container{font-size:0;max-height:75vh;max-width:75vw;position:relative}
-.popup__image{margin-bottom:10px;max-height:562px;max-width:100%}
+.popup__image{margin-bottom:10px;max-height:inherit;max-width:inherit}
 .popup__image-heading{color:#fff;font-family:Inter;font-size:12px;font-weight:400;line-height:15px;margin:0;padding:0}
 .form{display:flex;flex-direction:column}
 .form__input{border:none;border-bottom:1px solid rgba(0,0,0,.2);box-sizing:border-box;color:#000;font-family:Inter,Arial,sans-serif;font-size:14px;font-weight:400;height:27px;line-height:17px;margin-bottom:5px;outline:none;padding:0 0 13px}@media screen and (max-width:1023px){.form__input{margin-bottom:5px}}
