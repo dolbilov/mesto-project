@@ -1,5 +1,5 @@
 .popup__image {
   margin-bottom: 10px;
-  max-width: inherit;
-  max-height: inherit;
+  max-width: 75vw;
+  max-height: 75vh;
 }
