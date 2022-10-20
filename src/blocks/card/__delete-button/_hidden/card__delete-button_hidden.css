@@ -1,0 +1,5 @@
+.card__delete-button_hidden {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+}
