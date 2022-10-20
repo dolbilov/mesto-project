@@ -7,6 +7,7 @@ import "./pages/index.css";
 import * as cards from "./components/cards";
 import { openPopup, closePopup } from "./components/modal";
 import * as validate from "./components/validate";
+import * as api from "./components/api";
 
 const selectors = {
   formSelector: ".form",
@@ -20,6 +21,7 @@ const selectors = {
 // Profile info
 const profileName = document.querySelector(".profile__name-text");
 const profileDescription = document.querySelector(".profile__description");
+const profileAvatar = document.querySelector(".profile__image");
 
 // Profile popup
 const profilePopup = document.querySelector(".popup_type_profile");
@@ -70,11 +72,14 @@ function renderProfilePopup() {
 
 function saveProfilePopup(evt) {
   evt.preventDefault();
-  profileName.textContent = profilePopupNameInput.value;
-  profileDescription.textContent = profilePopupDescriptionInput.value;
+  api.updateProfileInfo(profilePopupNameInput.value, profilePopupDescriptionInput.value)
+    .then(data => {
+      profileName.textContent = data.name;
+      profileDescription.textContent = data.about;
+    })
+    .catch(err => console.log(`Ошибка ${err.status}`));
   closePopup(profilePopup);
 }
-
 
 // Profile popup listeners
 document
@@ -83,9 +88,8 @@ document
 
 profilePopupForm.addEventListener("submit", saveProfilePopup);
 
-
-// New card popup listeners
-addButton.addEventListener("click", () => {
+// New card popup functions
+function renderNewCardPopup() {
   // Clear fields
   newCardPopupHeadingInput.value = "";
   newCardPopupLinkInput.value = "";
@@ -101,46 +105,53 @@ addButton.addEventListener("click", () => {
   );
 
   openPopup(newCardPopup);
-});
-
-newCardPopupForm.addEventListener("submit", (evt) =>
-  addCard(
-    evt,
-    newCardPopupHeadingInput,
-    newCardPopupLinkInput,
-    cardsContainer,
-    newCardPopup
-  )
-);
-
-
-function renderNewCardPopup(name, link) {
-  openPopup(previewPopup);
-
-  previewPopupImage.src = link;
-  previewPopupImage.alt = name;
-  previewPopupHeading.textContent = name;
 }
 
-function addCard(evt) {
+// New card popup listeners
+addButton.addEventListener("click", renderNewCardPopup);
+
+newCardPopupForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
 
-  const tempCard = cards.createCard(
-    newCardPopupHeadingInput.value,
-    newCardPopupLinkInput.value,
-    cardTemplate,
-    renderNewCardPopup
-  );
-
-  cardsContainer.prepend(tempCard);
+  api.createCard(newCardPopupHeadingInput.value, newCardPopupLinkInput.value)
+    .then(data => {
+      const tempCard = cards.createCard(data, cardTemplate, renderPreviewPopup);
+      cardsContainer.prepend(tempCard);
+    })
+    .catch(api.handleError);
 
   // Clear form inputs
   newCardPopupHeadingInput.value = "";
   newCardPopupLinkInput.value = "";
 
   closePopup(newCardPopup);
+});
+
+function renderPreviewPopup(name, link) {
+  previewPopupImage.src = link;
+  previewPopupImage.alt = name;
+  previewPopupHeading.textContent = name;
+
+  openPopup(previewPopup);
 }
 
-cards.renderCards(cardsContainer, cardTemplate, renderNewCardPopup);
-
 validate.enableValidation(selectors);
+
+// Set profile data from server
+api.getProfileData()
+  .then(data => {
+    api.setUserid(data._id);
+
+    profileName.textContent = data.name;
+    profileDescription.textContent = data.about;
+    profileAvatar.src = data.avatar;
+  })
+  .catch(api.handleError);
+
+// Get initial cards from server
+api.getInitialCards()
+  .then(data => data.reverse().forEach(card => {
+    const tempCard = cards.createCard(card, cardTemplate, renderPreviewPopup);
+    cardsContainer.prepend(tempCard);
+  }))
+  .catch(api.handleError);
