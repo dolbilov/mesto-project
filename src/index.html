@@ -165,6 +165,28 @@
 </div>
 <!-- /.popup popup_type_image -->
 
+<!-- POPUP: edit profile image -->
+<div class="popup popup_type_avatar">
+  <div class="popup__container">
+    <h2 class="popup__heading">Обновить аватар</h2>
+    <form class="form" name="avatar">
+      <input
+        type="url"
+        name="avatar-link"
+        id="avatar-link"
+        placeholder="Ссылка на новый аватар"
+        class="form__input"
+        required
+      >
+      <span class="form__error-text avatar-link-error"></span>
+      <button type="submit" class="form__button">Сохранить</button>
+    </form>
+    <button type="button" class="popup__close-button"></button>
+  </div>
+  <!-- /.popup__container -->
+</div>
+<!-- /.popup popup_type_avatar -->
+
 <template id="card">
   <li class="card">
     <button class="card__delete-button" type="button"></button>

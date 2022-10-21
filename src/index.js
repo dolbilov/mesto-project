@@ -28,9 +28,7 @@ const profilePopup = document.querySelector(".popup_type_profile");
 const profilePopupForm = profilePopup.querySelector(selectors.formSelector);
 const profilePopupNameInput = profilePopupForm.querySelector("#name");
 const profilePopupDescriptionInput = profilePopupForm.querySelector("#about");
-const profilePopupSubmitButton = profilePopupForm.querySelector(
-  selectors.submitButtonSelector
-);
+const profilePopupSubmitButton = profilePopupForm.querySelector(selectors.submitButtonSelector);
 
 // Image popup
 const previewPopup = document.querySelector(".popup_type_image");
@@ -43,9 +41,13 @@ const newCardPopup = document.querySelector(".popup_type_card");
 const newCardPopupForm = newCardPopup.querySelector(selectors.formSelector);
 const newCardPopupHeadingInput = newCardPopupForm.querySelector("#place-heading");
 const newCardPopupLinkInput = newCardPopupForm.querySelector("#link");
-const newCardPopupSubmitButton = newCardPopupForm.querySelector(
-  selectors.submitButtonSelector
-);
+const newCardPopupSubmitButton = newCardPopupForm.querySelector(selectors.submitButtonSelector);
+
+// Avatar popup
+const avatarPopup = document.querySelector(".popup_type_avatar");
+const avatarForm = avatarPopup.querySelector(selectors.formSelector);
+const newAvatarLinkInput = avatarForm.querySelector("#avatar-link");
+const avatarPopupSubmitButton =avatarForm.querySelector(selectors.submitButtonSelector);
 
 const cardsContainer = document.querySelector(".cards__list");
 const cardTemplate = document.querySelector("#card").content;
@@ -134,6 +136,32 @@ function renderPreviewPopup(name, link) {
 
   openPopup(previewPopup);
 }
+
+// Avatar popup
+profileAvatar.addEventListener('click', () => {
+  // Clear fields
+  newAvatarLinkInput.value = "";
+
+  // Clear all errors
+  validate.hideAllInputsError(avatarForm, selectors);
+
+  validate.toggleButtonState([newAvatarLinkInput], avatarPopupSubmitButton, selectors);
+
+  openPopup(avatarPopup);
+});
+
+avatarForm.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+
+  const newLink = newAvatarLinkInput.value;
+  api.updateAvatar(newLink)
+    .then(data => {
+      profileAvatar.src = data.avatar;
+    })
+    .catch(api.handleError)
+
+  closePopup(avatarPopup);
+})
 
 validate.enableValidation(selectors);
 
