@@ -67,3 +67,7 @@ export function setLike(id) {
 export function unsetLike(id) {
   return getData(`cards/likes/${id}`, 'DELETE');
 }
+
+export function updateAvatar(link) {
+  return getData('users/me/avatar', 'PATCH', {avatar: link});
+}
