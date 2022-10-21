@@ -1,6 +1,12 @@
 # IDE prettier settings
 .prettierrc.json
 
+# Editor config
+.editorconfig
+
+# Jetbrains software settings
+.idea/
+
 # dist folder
 /dist
 
