@@ -21,6 +21,7 @@ const selectors = {
 // Profile info
 const profileName = document.querySelector(".profile__name-text");
 const profileDescription = document.querySelector(".profile__description");
+const profileAvatarContainer = document.querySelector('.profile__image-container');
 const profileAvatar = document.querySelector(".profile__image");
 
 // Profile popup
@@ -74,13 +75,19 @@ function renderProfilePopup() {
 
 function saveProfilePopup(evt) {
   evt.preventDefault();
+
+   profilePopupSubmitButton.textContent = "Сохранение...";
+
   api.updateProfileInfo(profilePopupNameInput.value, profilePopupDescriptionInput.value)
     .then(data => {
       profileName.textContent = data.name;
       profileDescription.textContent = data.about;
     })
-    .catch(err => console.log(`Ошибка ${err.status}`));
-  closePopup(profilePopup);
+    .catch(err => console.log(`Ошибка ${err.status}`))
+    .finally(() => {
+      closePopup(profilePopup);
+      profilePopupSubmitButton.textContent = "Сохранить";
+    });
 }
 
 // Profile popup listeners
@@ -138,7 +145,7 @@ function renderPreviewPopup(name, link) {
 }
 
 // Avatar popup
-profileAvatar.addEventListener('click', () => {
+profileAvatarContainer.addEventListener('click', () => {
   // Clear fields
   newAvatarLinkInput.value = "";
 
