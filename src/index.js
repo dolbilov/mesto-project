@@ -23,6 +23,7 @@ const profileName = document.querySelector(".profile__name-text");
 const profileDescription = document.querySelector(".profile__description");
 const profileAvatarContainer = document.querySelector(".profile__image-container");
 const profileAvatar = document.querySelector(".profile__image");
+const profileEditButton = document.querySelector(".profile__edit-button");
 
 // Profile popup
 const profilePopup = document.querySelector(".popup_type_profile");
@@ -54,6 +55,7 @@ const cardsContainer = document.querySelector(".cards__list");
 const cardTemplate = document.querySelector("#card").content;
 
 const timeoutDelay = 1000;
+
 
 // Profile popup functions
 function renderProfilePopup() {
@@ -92,11 +94,9 @@ function saveProfilePopup(evt) {
 }
 
 // Profile popup listeners
-document
-  .querySelector(".profile__edit-button")
-  .addEventListener("click", renderProfilePopup);
-
+profileEditButton.addEventListener("click", renderProfilePopup);
 profilePopupForm.addEventListener("submit", saveProfilePopup);
+
 
 // New card popup functions
 function renderNewCardPopup() {
@@ -117,14 +117,7 @@ function renderNewCardPopup() {
   openPopup(newCardPopup);
 }
 
-function saveNewCardPopup() {
-  // TODO: finish it
-}
-
-// New card popup listeners
-addButton.addEventListener("click", renderNewCardPopup);
-
-newCardPopupForm.addEventListener("submit", (evt) => {
+function saveNewCardPopup(evt) {
   evt.preventDefault();
 
   newCardPopupSubmitButton.textContent = "Создание...";
@@ -139,7 +132,12 @@ newCardPopupForm.addEventListener("submit", (evt) => {
       closePopup(newCardPopup);
       setTimeout(() => newCardPopupSubmitButton.textContent = "Создать", timeoutDelay);
     });
-});
+}
+
+// New card popup listeners
+addButton.addEventListener("click", renderNewCardPopup);
+newCardPopupForm.addEventListener("submit", saveNewCardPopup);
+
 
 // Preview popup
 function renderPreviewPopup(name, link) {
@@ -150,17 +148,9 @@ function renderPreviewPopup(name, link) {
   openPopup(previewPopup);
 }
 
+
 // Avatar popup functions
 function renderProfileAvatarPopup() {
-  // TODO: finish it
-}
-
-function saveProfileAvatarPopup() {
-  // TODO: finish it
-}
-
-// Avatar popup event listeners
-profileAvatarContainer.addEventListener("click", () => {
   // Clear fields
   newAvatarLinkInput.value = "";
 
@@ -170,9 +160,9 @@ profileAvatarContainer.addEventListener("click", () => {
   validate.toggleButtonState([newAvatarLinkInput], avatarPopupSubmitButton, selectors);
 
   openPopup(avatarPopup);
-});
+}
 
-avatarForm.addEventListener("submit", (evt) => {
+function saveProfileAvatarPopup(evt) {
   evt.preventDefault();
 
   avatarPopupSubmitButton.textContent = "Сохранение...";
@@ -187,14 +177,19 @@ avatarForm.addEventListener("submit", (evt) => {
       closePopup(avatarPopup);
       setTimeout(() => avatarPopupSubmitButton.textContent = "Сохранить", timeoutDelay);
     });
-});
+}
+
+// Avatar popup event listeners
+profileAvatarContainer.addEventListener("click", renderProfileAvatarPopup);
+avatarForm.addEventListener("submit", saveProfileAvatarPopup);
+
 
 validate.enableValidation(selectors);
 
 // Set profile data from server
 api.getProfileData()
   .then(data => {
-    api.setUserid(data._id);
+    api.setUserId(data._id);
 
     profileName.textContent = data.name;
     profileDescription.textContent = data.about;
