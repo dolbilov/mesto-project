@@ -21,7 +21,7 @@ const selectors = {
 // Profile info
 const profileName = document.querySelector(".profile__name-text");
 const profileDescription = document.querySelector(".profile__description");
-const profileAvatarContainer = document.querySelector('.profile__image-container');
+const profileAvatarContainer = document.querySelector(".profile__image-container");
 const profileAvatar = document.querySelector(".profile__image");
 
 // Profile popup
@@ -48,11 +48,12 @@ const newCardPopupSubmitButton = newCardPopupForm.querySelector(selectors.submit
 const avatarPopup = document.querySelector(".popup_type_avatar");
 const avatarForm = avatarPopup.querySelector(selectors.formSelector);
 const newAvatarLinkInput = avatarForm.querySelector("#avatar-link");
-const avatarPopupSubmitButton =avatarForm.querySelector(selectors.submitButtonSelector);
+const avatarPopupSubmitButton = avatarForm.querySelector(selectors.submitButtonSelector);
 
 const cardsContainer = document.querySelector(".cards__list");
 const cardTemplate = document.querySelector("#card").content;
 
+const timeoutDelay = 1000;
 
 // Profile popup functions
 function renderProfilePopup() {
@@ -76,7 +77,7 @@ function renderProfilePopup() {
 function saveProfilePopup(evt) {
   evt.preventDefault();
 
-   profilePopupSubmitButton.textContent = "Сохранение...";
+  profilePopupSubmitButton.textContent = "Сохранение...";
 
   api.updateProfileInfo(profilePopupNameInput.value, profilePopupDescriptionInput.value)
     .then(data => {
@@ -86,7 +87,7 @@ function saveProfilePopup(evt) {
     .catch(err => console.log(`Ошибка ${err.status}`))
     .finally(() => {
       closePopup(profilePopup);
-      profilePopupSubmitButton.textContent = "Сохранить";
+      setTimeout(() => profilePopupSubmitButton.textContent = "Сохранить", timeoutDelay);
     });
 }
 
@@ -116,26 +117,31 @@ function renderNewCardPopup() {
   openPopup(newCardPopup);
 }
 
+function saveNewCardPopup() {
+  // TODO: finish it
+}
+
 // New card popup listeners
 addButton.addEventListener("click", renderNewCardPopup);
 
 newCardPopupForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
 
+  newCardPopupSubmitButton.textContent = "Создание...";
+
   api.createCard(newCardPopupHeadingInput.value, newCardPopupLinkInput.value)
     .then(data => {
       const tempCard = cards.createCard(data, cardTemplate, renderPreviewPopup);
       cardsContainer.prepend(tempCard);
     })
-    .catch(api.handleError);
-
-  // Clear form inputs
-  newCardPopupHeadingInput.value = "";
-  newCardPopupLinkInput.value = "";
-
-  closePopup(newCardPopup);
+    .catch(api.handleError)
+    .finally(() => {
+      closePopup(newCardPopup);
+      setTimeout(() => newCardPopupSubmitButton.textContent = "Создать", timeoutDelay);
+    });
 });
 
+// Preview popup
 function renderPreviewPopup(name, link) {
   previewPopupImage.src = link;
   previewPopupImage.alt = name;
@@ -144,8 +150,17 @@ function renderPreviewPopup(name, link) {
   openPopup(previewPopup);
 }
 
-// Avatar popup
-profileAvatarContainer.addEventListener('click', () => {
+// Avatar popup functions
+function renderProfileAvatarPopup() {
+  // TODO: finish it
+}
+
+function saveProfileAvatarPopup() {
+  // TODO: finish it
+}
+
+// Avatar popup event listeners
+profileAvatarContainer.addEventListener("click", () => {
   // Clear fields
   newAvatarLinkInput.value = "";
 
@@ -157,8 +172,10 @@ profileAvatarContainer.addEventListener('click', () => {
   openPopup(avatarPopup);
 });
 
-avatarForm.addEventListener('submit', (evt) => {
+avatarForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
+
+  avatarPopupSubmitButton.textContent = "Сохранение...";
 
   const newLink = newAvatarLinkInput.value;
   api.updateAvatar(newLink)
@@ -166,9 +183,11 @@ avatarForm.addEventListener('submit', (evt) => {
       profileAvatar.src = data.avatar;
     })
     .catch(api.handleError)
-
-  closePopup(avatarPopup);
-})
+    .finally(() => {
+      closePopup(avatarPopup);
+      setTimeout(() => avatarPopupSubmitButton.textContent = "Сохранить", timeoutDelay);
+    });
+});
 
 validate.enableValidation(selectors);
 
