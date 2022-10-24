@@ -11,7 +11,7 @@ const config = {
   }
 };
 
-export function setUserid(id) {
+export function setUserId(id) {
   userId = id;
 }
 
