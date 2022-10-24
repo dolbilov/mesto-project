@@ -2,8 +2,14 @@
 
 // All popups
 const popups = document.querySelectorAll('.popup');
+const deleteCardPopup = document.querySelector('.popup_type_delete-card');
+let deleteCardAction;
 
-function addEventListenerForClosing(evt) {
+export function setDeleteCardAction(action) {
+  deleteCardAction = action;
+}
+
+function closePopupWhenPressEsc(evt) {
   if (evt.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
@@ -11,12 +17,12 @@ function addEventListenerForClosing(evt) {
 }
 
 export function openPopup(popup) {
-  document.addEventListener('keydown', addEventListenerForClosing);
+  document.addEventListener('keydown', closePopupWhenPressEsc);
   popup.classList.add('popup_opened');
 }
 
 export function closePopup(popup) {
-  document.removeEventListener('keydown', addEventListenerForClosing);
+  document.removeEventListener('keydown', closePopupWhenPressEsc);
   popup.classList.remove('popup_opened');
 }
 
@@ -31,3 +37,7 @@ popups.forEach((popup) =>
     }
   })
 );
+
+export function deleteCardAfterConfirm() {
+  deleteCardAction();
+}

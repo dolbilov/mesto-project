@@ -1,13 +1,14 @@
 "use strict";
 
 import * as api from "./api";
+import * as modal from "./modal";
 
 
 function hasBeenLikedByCurrentUser(card) {
   return card.likes.some(like => like._id === api.userId);
 }
 
-export function createCard(card, cardTemplate, renderPreviewCallback) {
+export function createCard(card, cardTemplate, renderPreviewCallback, deletePopup) {
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
   const heading = cardElement.querySelector(".card__heading");
   const likeCountText = cardElement.querySelector(".card__likes-count-text");
@@ -56,12 +57,18 @@ export function createCard(card, cardTemplate, renderPreviewCallback) {
   const cardOwnerId = card.owner._id;
   if (api.userId !== cardOwnerId) {
     deleteButton.classList.add("card__delete-button_hidden");
-  }
+  } else {
+    deleteButton.addEventListener("click", () => {
+      modal.openPopup(deletePopup);
 
-  // add delete button event listener
-  deleteButton.addEventListener("click", () => api.deleteCard(card._id)
-    .then(() => cardElement.remove()) // remove card from HTML
-    .catch(err => console.log(`Ошибка ${err.status}`)));
+      modal.setDeleteCardAction(() => {
+        api.deleteCard(card._id)
+          .then(() => cardElement.remove()) // remove card from HTML
+          .catch(api.handleError)
+          .finally(() => modal.closePopup(deletePopup));
+      })
+    });
+  }
 
   return cardElement;
 }

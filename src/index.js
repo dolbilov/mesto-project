@@ -5,7 +5,7 @@ import html from "./index.html";
 import "./pages/index.css";
 
 import * as cards from "./components/cards";
-import { openPopup, closePopup } from "./components/modal";
+import { openPopup, closePopup, deleteCardAfterConfirm } from "./components/modal";
 import * as validate from "./components/validate";
 import * as api from "./components/api";
 
@@ -50,6 +50,9 @@ const avatarPopup = document.querySelector(".popup_type_avatar");
 const avatarForm = avatarPopup.querySelector(selectors.formSelector);
 const newAvatarLinkInput = avatarForm.querySelector("#avatar-link");
 const avatarPopupSubmitButton = avatarForm.querySelector(selectors.submitButtonSelector);
+
+// Delete card popup
+const deleteCardPopup = document.querySelector('.popup_type_delete-card');
 
 const cardsContainer = document.querySelector(".cards__list");
 const cardTemplate = document.querySelector("#card").content;
@@ -124,7 +127,7 @@ function saveNewCardPopup(evt) {
 
   api.createCard(newCardPopupHeadingInput.value, newCardPopupLinkInput.value)
     .then(data => {
-      const tempCard = cards.createCard(data, cardTemplate, renderPreviewPopup);
+      const tempCard = cards.createCard(data, cardTemplate, renderPreviewPopup, deleteCardPopup);
       cardsContainer.prepend(tempCard);
     })
     .catch(api.handleError)
@@ -184,6 +187,14 @@ profileAvatarContainer.addEventListener("click", renderProfileAvatarPopup);
 avatarForm.addEventListener("submit", saveProfileAvatarPopup);
 
 
+// Delete card popup
+deleteCardPopup.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+
+  deleteCardAfterConfirm();
+});
+
+
 validate.enableValidation(selectors);
 
 // Set profile data from server
@@ -200,7 +211,7 @@ api.getProfileData()
 // Get initial cards from server
 api.getInitialCards()
   .then(data => data.reverse().forEach(card => {
-    const tempCard = cards.createCard(card, cardTemplate, renderPreviewPopup);
+    const tempCard = cards.createCard(card, cardTemplate, renderPreviewPopup, deleteCardPopup);
     cardsContainer.prepend(tempCard);
   }))
   .catch(api.handleError);
