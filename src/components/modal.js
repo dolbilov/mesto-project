@@ -2,6 +2,12 @@
 
 // All popups
 const popups = document.querySelectorAll('.popup');
+const deleteCardPopup = document.querySelector('.popup_type_delete-card');
+let deleteCardAction;
+
+export function setDeleteCardAction(action) {
+  deleteCardAction = action;
+}
 
 function closePopupWhenPressEsc(evt) {
   if (evt.key === 'Escape') {
@@ -31,3 +37,7 @@ popups.forEach((popup) =>
     }
   })
 );
+
+export function deleteCardAfterConfirm() {
+  deleteCardAction();
+}
