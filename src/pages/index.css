@@ -34,6 +34,7 @@
 @import url(../blocks/profile/__description/profile__description.css);
 @import url(../blocks/profile/__image/profile__image.css);
 @import url(../blocks/profile/__add-button/profile__add-button.css);
+@import url(../blocks/profile/__image-container/profile__image-container.css);
 
 @import url(../blocks/cards/cards.css);
 @import url(../blocks/cards/__list/cards__list.css);

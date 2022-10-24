@@ -4,8 +4,5 @@
   height: 120px;
   object-fit: cover;
   transition: opacity .2s ease-in-out;
-}
-
-.profile__image:hover {
-  opacity: 0.8;
+  position: relative;
 }
