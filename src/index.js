@@ -52,7 +52,7 @@ const newAvatarLinkInput = avatarForm.querySelector("#avatar-link");
 const avatarPopupSubmitButton = avatarForm.querySelector(selectors.submitButtonSelector);
 
 // Delete card popup
-const deleteCardPopup = document.querySelector('.popup_type_delete-card');
+const deleteCardPopup = document.querySelector(".popup_type_delete-card");
 
 const cardsContainer = document.querySelector(".cards__list");
 const cardTemplate = document.querySelector("#card").content;
@@ -88,12 +88,11 @@ function saveProfilePopup(evt) {
     .then(data => {
       profileName.textContent = data.name;
       profileDescription.textContent = data.about;
-    })
-    .catch(err => console.log(`Ошибка ${err.status}`))
-    .finally(() => {
+
       closePopup(profilePopup);
       setTimeout(() => profilePopupSubmitButton.textContent = "Сохранить", timeoutDelay);
-    });
+    })
+    .catch(err => console.log(`Ошибка ${err.status}`));
 }
 
 // Profile popup listeners
@@ -104,8 +103,7 @@ profilePopupForm.addEventListener("submit", saveProfilePopup);
 // New card popup functions
 function renderNewCardPopup() {
   // Clear fields
-  newCardPopupHeadingInput.value = "";
-  newCardPopupLinkInput.value = "";
+  newCardPopupForm.reset();
 
   // Clear all errors
   validate.hideAllInputsError(newCardPopupForm, selectors);
@@ -129,12 +127,11 @@ function saveNewCardPopup(evt) {
     .then(data => {
       const tempCard = cards.createCard(data, cardTemplate, renderPreviewPopup, deleteCardPopup);
       cardsContainer.prepend(tempCard);
-    })
-    .catch(api.handleError)
-    .finally(() => {
+
       closePopup(newCardPopup);
       setTimeout(() => newCardPopupSubmitButton.textContent = "Создать", timeoutDelay);
-    });
+    })
+    .catch(api.handleError);
 }
 
 // New card popup listeners
@@ -155,7 +152,7 @@ function renderPreviewPopup(name, link) {
 // Avatar popup functions
 function renderProfileAvatarPopup() {
   // Clear fields
-  newAvatarLinkInput.value = "";
+  avatarForm.reset();
 
   // Clear all errors
   validate.hideAllInputsError(avatarForm, selectors);
@@ -197,21 +194,24 @@ deleteCardPopup.addEventListener("submit", (evt) => {
 
 validate.enableValidation(selectors);
 
-// Set profile data from server
-api.getProfileData()
-  .then(data => {
-    api.setUserId(data._id);
 
-    profileName.textContent = data.name;
-    profileDescription.textContent = data.about;
-    profileAvatar.src = data.avatar;
+Promise.all([
+  api.getProfileData(),
+  api.getInitialCards()
+])
+  .then(data => {
+    // get profile data handling
+    api.setUserId(data[0]._id);
+
+    profileName.textContent = data[0].name;
+    profileDescription.textContent = data[0].about;
+    profileAvatar.src = data[0].avatar;
+
+    data[1].reverse().forEach(card => {
+      const tempCard = cards.createCard(card, cardTemplate, renderPreviewPopup, deleteCardPopup);
+      cardsContainer.prepend(tempCard);
+    });
   })
   .catch(api.handleError);
 
-// Get initial cards from server
-api.getInitialCards()
-  .then(data => data.reverse().forEach(card => {
-    const tempCard = cards.createCard(card, cardTemplate, renderPreviewPopup, deleteCardPopup);
-    cardsContainer.prepend(tempCard);
-  }))
-  .catch(api.handleError);
+
