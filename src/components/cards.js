@@ -48,6 +48,10 @@ export function createCard(card, cardTemplate, renderPreviewCallback, deletePopu
     } else {
       api.setLike(card._id)
         .then(data => {
+          // toggle like button state
+          evt.target.classList.toggle("card__like-button_active");
+
+          // set like count text
           likeCountText.textContent = data.likes.length;
         })
         .catch(api.handleError);
