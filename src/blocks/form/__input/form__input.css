@@ -12,10 +12,3 @@
   outline: none;
   padding: 0 0 13px;
 }
-
-/* TODO: check params for mobile and tablet version */
-@media screen and (max-width: 1023px) {
-  .form__input {
-    margin-bottom: 5px;
-  }
-}
