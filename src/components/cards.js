@@ -38,6 +38,10 @@ export function createCard(card, cardTemplate, renderPreviewCallback, deletePopu
     if (isLiked) {
       api.unsetLike(card._id)
         .then(data => {
+          // toggle like button state
+          evt.target.classList.toggle("card__like-button_active");
+
+          // set like count text
           likeCountText.textContent = data.likes.length;
         })
         .catch(api.handleError);
@@ -48,9 +52,6 @@ export function createCard(card, cardTemplate, renderPreviewCallback, deletePopu
         })
         .catch(api.handleError);
     }
-
-    // toggle like button state
-    evt.target.classList.toggle("card__like-button_active");
   });
 
   // hide delete button if card is not from current user
@@ -63,9 +64,11 @@ export function createCard(card, cardTemplate, renderPreviewCallback, deletePopu
 
       modal.setDeleteCardAction(() => {
         api.deleteCard(card._id)
-          .then(() => cardElement.remove()) // remove card from HTML
-          .catch(api.handleError)
-          .finally(() => modal.closePopup(deletePopup));
+          .then(() => {
+            cardElement.remove();
+            modal.closePopup(deletePopup);
+          }) // remove card from HTML
+          .catch(api.handleError);
       })
     });
   }
