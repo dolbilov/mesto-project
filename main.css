@@ -11,7 +11,7 @@
 .popup__image{margin-bottom:10px;max-height:75vh;max-width:75vw}
 .popup__image-heading{color:#fff;font-family:Inter;font-size:12px;font-weight:400;line-height:15px;margin:0;padding:0}
 .form{display:flex;flex-direction:column}
-.form__input{border:none;border-bottom:1px solid rgba(0,0,0,.2);box-sizing:border-box;color:#000;font-family:Inter,Arial,sans-serif;font-size:14px;font-weight:400;height:27px;line-height:17px;margin-bottom:5px;outline:none;padding:0 0 13px}@media screen and (max-width:1023px){.form__input{margin-bottom:5px}}
+.form__input{border:none;border-bottom:1px solid rgba(0,0,0,.2);box-sizing:border-box;color:#000;font-family:Inter,Arial,sans-serif;font-size:14px;font-weight:400;height:27px;line-height:17px;margin-bottom:5px;outline:none;padding:0 0 13px}
 .form__input_type_error{border-bottom:1px solid red}
 .form__button{background:#000;border:1px solid #000;border-radius:2px;box-sizing:border-box;color:#fff;cursor:pointer;font-family:Inter,Arial,sans-serif;font-size:18px;font-weight:400;line-height:22px;padding:14px 0;text-align:center;transition:opacity .2s ease-in-out}.form__button:not(.form__button_disabled):hover{opacity:.8}@media screen and (max-width:1023px){.form__button{font-size:14px;line-height:17px;padding:14px 82px}}
 .form__button_disabled{background:#fff;border:1px solid #000;color:#000;cursor:not-allowed;opacity:.2}
