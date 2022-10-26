@@ -90,9 +90,9 @@ function saveProfilePopup(evt) {
       profileDescription.textContent = data.about;
 
       closePopup(profilePopup);
-      setTimeout(() => profilePopupSubmitButton.textContent = "Сохранить", timeoutDelay);
     })
-    .catch(err => console.log(`Ошибка ${err.status}`));
+    .catch(err => console.log(`Ошибка ${err.status}`))
+    .finally(() => setTimeout(() => profilePopupSubmitButton.textContent = "Сохранить", timeoutDelay));
 }
 
 // Profile popup listeners
@@ -129,9 +129,9 @@ function saveNewCardPopup(evt) {
       cardsContainer.prepend(tempCard);
 
       closePopup(newCardPopup);
-      setTimeout(() => newCardPopupSubmitButton.textContent = "Создать", timeoutDelay);
     })
-    .catch(api.handleError);
+    .catch(api.handleError)
+    .finally(() => setTimeout(() => newCardPopupSubmitButton.textContent = "Создать", timeoutDelay));
 }
 
 // New card popup listeners
@@ -171,10 +171,10 @@ function saveProfileAvatarPopup(evt) {
   api.updateAvatar(newLink)
     .then(data => {
       profileAvatar.src = data.avatar;
+      closePopup(avatarPopup);
     })
     .catch(api.handleError)
     .finally(() => {
-      closePopup(avatarPopup);
       setTimeout(() => avatarPopupSubmitButton.textContent = "Сохранить", timeoutDelay);
     });
 }
