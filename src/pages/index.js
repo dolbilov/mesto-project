@@ -1,63 +1,13 @@
 "use strict";
 
 // this string need for hot reload of webpack-dev-server
-import html from "./index.html";
-import "./pages/index.css";
+import "../index.html";
+import "./index.css";
 
-import * as cards from "./components/cards";
-import { openPopup, closePopup, deleteCardAfterConfirm } from "./components/modal";
-import * as validate from "./components/validate";
-import * as api from "./components/api";
-
-const selectors = {
-  formSelector: ".form",
-  inputSelector: ".form__input",
-  submitButtonSelector: ".form__button",
-  inactiveButtonClass: "form__button_disabled",
-  inputErrorClass: "form__input_type_error",
-  errorClass: "form__error_visible"
-};
-
-// Profile info
-const profileName = document.querySelector(".profile__name-text");
-const profileDescription = document.querySelector(".profile__description");
-const profileAvatarContainer = document.querySelector(".profile__image-container");
-const profileAvatar = document.querySelector(".profile__image");
-const profileEditButton = document.querySelector(".profile__edit-button");
-
-// Profile popup
-const profilePopup = document.querySelector(".popup_type_profile");
-const profilePopupForm = profilePopup.querySelector(selectors.formSelector);
-const profilePopupNameInput = profilePopupForm.querySelector("#name");
-const profilePopupDescriptionInput = profilePopupForm.querySelector("#about");
-const profilePopupSubmitButton = profilePopupForm.querySelector(selectors.submitButtonSelector);
-
-// Image popup
-const previewPopup = document.querySelector(".popup_type_image");
-const previewPopupImage = previewPopup.querySelector(".popup__image");
-const previewPopupHeading = previewPopup.querySelector(".popup__image-heading");
-
-// Card add popup
-const addButton = document.querySelector(".profile__add-button");
-const newCardPopup = document.querySelector(".popup_type_card");
-const newCardPopupForm = newCardPopup.querySelector(selectors.formSelector);
-const newCardPopupHeadingInput = newCardPopupForm.querySelector("#place-heading");
-const newCardPopupLinkInput = newCardPopupForm.querySelector("#link");
-const newCardPopupSubmitButton = newCardPopupForm.querySelector(selectors.submitButtonSelector);
-
-// Avatar popup
-const avatarPopup = document.querySelector(".popup_type_avatar");
-const avatarForm = avatarPopup.querySelector(selectors.formSelector);
-const newAvatarLinkInput = avatarForm.querySelector("#avatar-link");
-const avatarPopupSubmitButton = avatarForm.querySelector(selectors.submitButtonSelector);
-
-// Delete card popup
-const deleteCardPopup = document.querySelector(".popup_type_delete-card");
-
-const cardsContainer = document.querySelector(".cards__list");
-const cardTemplate = document.querySelector("#card").content;
-
-const timeoutDelay = 1000;
+import * as cards from "../components/cards";
+import { openPopup, closePopup, deleteCardAfterConfirm } from "../components/modal";
+import * as validate from "../components/validate";
+import * as api from "../components/api";
 
 
 // Profile popup functions
