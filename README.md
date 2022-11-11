@@ -1,26 +1,69 @@
-# Проект: Mesto
+# Mesto
 
-![Скриншот главной страницы проекта Mesto](https://i.imgur.com/HtAxmFS.png)
+<!-- BADGES HERE -->
 
-Данный проект является курсовым проектом Яндекс.Практикума по теме "Frontend Разработка".
+## 🔍 **Description**
 
-На данный момент реализована разметка и базовая логика:
+This project is a course project of Yandex.Practicum.  
+**Theme**: Adaptive and responsive make up, API, OOP.
 
-- редактирование профиля
-- добавление и удаление карточек
-- кнопка лайка
-- валидация форм
+## ⚙ **Tecnhology stack**
 
-По мере изучения JavaScript, будут добавляться дальнейшие части проекта, например, сохранение информации на backend и т.д.
-
-**Используемые технологии:**
-
-- Flexbox верстка
-- Grid верстка
+- CSS
+- Flexbox
+- Grid layout
 - Media queries
-- JS (с разделением по модулям)
-- Live валидация форм с использованием регулярных выражений
+- JS (OOP)
+- API (using fetch)
+- Live form validation
+- BEM Nested methodology
+- Webpack5
 
-Рабочий прототип представлен [здесь](https://dolbilov.github.io/mesto-project/).
+## 👀 **Visuals**
 
-&copy; Кирилл Долбилов feat. Яндекс.Практикум.
+![Screenshot of main page](https://i.imgur.com/HtAxmFS.png)
+
+## ⬇️ **Installation**
+
+Install NPM dependencies:
+
+```sh
+npm install
+```
+
+## 🚀 **Usage**
+
+Working prototype is [here](https://dolbilov.github.io/mesto-project/).
+
+<hr>
+
+Start developing using Webpack dev server:
+
+```sh
+npm run dev
+```
+
+<hr>
+
+Build project for production:
+
+```sh
+npm run build
+```
+
+## 🤝 **Contributing & Roadmap**
+
+Contributions, issues and feature requests are welcome.
+Feel free to check [issues page](https://github.com/dolbilov/mesto-project/issues) if you want to contribute.
+
+## 👤 **Authors**
+
+**_Kirill Dolbilov_**
+
+- Telegram: [@kdolbilov](https://t.me/kdolbilov)
+- GitHub: [@dolbilov](https://github.com/dolbilov)
+
+## 📝 **License**
+
+Copyright &copy; 2022 Kirill Dolbilov & Sergei Kozlov  
+This project is [GNU GPL v3.0](https://github.com/dolbilov/mesto-project/blob/main/LICENSE) licensed.
