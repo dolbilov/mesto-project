@@ -1,15 +1,20 @@
 import Popup from "./Popup";
+import * as constants from "../utils/constants";
 
-class ProfilePopup extends Popup {
+export default class ProfilePopup extends Popup {
   constructor() {
     super();
+    this._nameInput = constants.profilePopupNameInput;
+    this._aboutInput = constants.profilePopupAboutInput;
   }
 
-  _renderPopup() {
-
+  open() {
+    super.open();
+    this._fillForm();
   }
 
-  _savePopupResults() {
-
+  _fillForm() {
+    this._nameInput.value = constants.profileName.textContent;
+    this._aboutInput.value = constants.profileDescription.textContent;
   }
 }
