@@ -7,7 +7,7 @@
 This project is a course project of Yandex.Practicum.  
 **Theme**: Adaptive and responsive make up, API, OOP.
 
-## ⚙ **Tecnhology stack**
+## ⚙ **Stack**
 
 - CSS
 - Flexbox
