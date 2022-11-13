@@ -3,36 +3,31 @@ import "../index.html";
 import "./index.css";
 
 import FormValidator from "../components/FormValidator";
-import ProfilePopup from "../components/ProfilePopup";
-import NewCardPopup from "../components/NewCardPopup";
-import AvatarPopup from "../components/AvatarPopup";
-import PreviewPopup from "../components/PreviewPopup";
 import * as constants from "../utils/constants";
 import Api from "../components/Api";
 import UserInfo from "../components/UserInfo";
 import Card from "../components/Card";
 import Section from "../components/Section";
+import { profileAvatarSelector } from "../utils/constants";
 
 let userInfo;
 const api = new Api(constants.config);
-// const profileFormValidator = new FormValidator('');
-// const newCardFormValidator = new FormValidator('');
-// const avatarFormValidator = new FormValidator('');
-//const profilePopup = new ProfilePopup(constants.profilePopup, profileFormValidator);
+// const profileFormValidator = new FormValidator(constants.selectors, constants.profilePopupForm);
+// const newCardFormValidator = new FormValidator(constants.selectors, constants.newCardPopupForm);
+// const avatarFormValidator = new FormValidator(constants.selectors, constants.newCardPopupForm);
 
 
-Promise.all([api.getProfileData(), api.getInitialCards()])
+Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(data => {
     const [profileInfo, cardsInfo] = data;
 
     // set profile info
-    userInfo = new UserInfo(profileInfo._id);
-    userInfo.updateUserInfo({
-        name: profileInfo.name,
-        about: profileInfo.about,
-        avatar: profileInfo.avatar
-      }
-    );
+    userInfo = new UserInfo({
+      profileNameSelector: constants.profileNameSelector,
+      profileAboutSelector: constants.profileDescriptionSelector,
+      profileAvatarSelector: constants.profileAvatarSelector
+    });
+    userInfo.setUserInfo(profileInfo, api);
 
 
     // set cards info
@@ -51,23 +46,26 @@ Promise.all([api.getProfileData(), api.getInitialCards()])
   })
   .catch(api.handleError);
 
+// // Enable validation
+// profileFormValidator.enableValidation();
+// newCardFormValidator.enableValidation();
+// avatarFormValidator.enableValidation();
 
 // function saveProfilePopup(evt) {
 //   evt.preventDefault();
 //
-//   profilePopupSubmitButton.textContent = "Сохранение...";
+//   constants.profilePopupSubmitButton.textContent = "Сохранение...";
 //
-//   api.updateProfileInfo(profilePopupNameInput.value, profilePopupDescriptionInput.value)
+//   api.updateProfileInfo(constants.profilePopupNameInput.value, constants.profilePopupAboutInput.value)
 //     .then(data => {
-//       profileName.textContent = data.name;
-//       profileDescription.textContent = data.about;
-//
-//       closePopup(profilePopup);
+//       constants.profileName.textContent = data.name;
+//       constants.profileDescription.textContent = data.about;
+//       this._close();
 //     })
-//     .catch(err => console.log(`Ошибка ${err.status}`))
+//     .catch(err => console.warn(`Ошибка ${err.status}`))
 //     .finally(() => setTimeout(() => profilePopupSubmitButton.textContent = "Сохранить", timeoutDelay));
 // }
-//
+
 // // Profile popup listeners
 // profileEditButton.addEventListener("click", renderProfilePopup);
 // profilePopupForm.addEventListener("submit", saveProfilePopup);
@@ -163,7 +161,3 @@ Promise.all([api.getProfileData(), api.getInitialCards()])
 //
 //   deleteCardAfterConfirm();
 // });
-//
-//
-// validate.enableValidation(selectors);
-
