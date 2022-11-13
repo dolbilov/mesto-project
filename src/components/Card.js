@@ -34,7 +34,7 @@ export default class Card {
     // setup image
     cardImage.src = this._link;
     cardImage.alt = this._name;
-    cardImage.addEventListener('click', this._handleCardClick);
+    cardImage.addEventListener("click", this._handleCardClick);
 
     // setup likes count
     likeCountText.textContent = this._likes.length;
