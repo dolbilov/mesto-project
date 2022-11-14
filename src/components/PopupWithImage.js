@@ -4,13 +4,16 @@ import { previewPopupHeadingSelector, previewPopupImageSelector } from "../utils
 export default class PopupWithImage extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
+
     this._image = this._popup.querySelector(previewPopupImageSelector);
     this._heading = this._popup.querySelector(previewPopupHeadingSelector);
   }
 
-  open(src, heading) {
-    this._image.src = src;
-    this._image.alt = heading;
-    this._heading.textContent = heading;
+  open({ link, name }) {
+    super.open();
+
+    this._image.src = link;
+    this._image.alt = name;
+    this._heading.textContent = name;
   }
 }
