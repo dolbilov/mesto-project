@@ -21,15 +21,31 @@ export default class Card {
     this._likeCountText = this._element.querySelector(".card__likes-count-text");
     this._likeButton = this._element.querySelector(".card__like-button");
     this._deleteButton = this._element.querySelector(".card__delete-button");
-
   }
 
   removeCard(cardItem) {
     cardItem.remove();
   }
 
+  setupLike() {
+    this._likeCountText.textContent = this._likes.length;
+    if (this._isLikedByUser()) {
+      this._likeButton.classList.add("card__like-button_active"); // TODO: is it work?
+    }
+
+    this._likeButton.addEventListener("click", () => this._handleLikeClick(this._id));
+  }
+
+  setupDeleteButton() {
+    if (this._ownerId === this._userId) {
+      this._deleteButton.addEventListener("click", () => this._handleDeleteClick(this._id));
+    } else {
+      this._deleteButton.classList.add("card__delete-button_hidden");
+    }
+  }
+
   _isLikedByUser() {
-    return this._likes.some(like => like.id === this._userId);
+    return this._likes.some(like => like._id === this._userId);
   }
 
   _getElement() {
@@ -42,34 +58,25 @@ export default class Card {
 
   _setEventListeners() {
     this._cardImage.addEventListener("click", this._handleImageClick);
-    this._likeButton.addEventListener("click", this._handleLikeClick);
+    this._likeButton.addEventListener("click", () => {
+      this._handleLikeClick(this._id).then((data) => {
+        //this._likes = data.likes;
+      });
+
+      this._likeButton.classList.toggle("card__like-button_active");
+    });
     this._deleteButton.addEventListener("click", this._handleDeleteClick);
   }
 
   generate() {
-    // setup heading
     this._heading.textContent = this._name;
 
     // setup image
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
-    this._cardImage.addEventListener("click", this._handleImageClick);
 
-    // setup like
-    this._likeCountText.textContent = this._likes.length;
-    if (this._isLikedByUser()) {
-      this._likeButton.classList.add("card__like-button_active"); // TODO: is it work?
-    }
-
-    this._likeButton.addEventListener("click", () => this._handleLikeClick(this._id));
-
-    if (this._ownerId === this._userId) {
-      this._deleteButton.addEventListener('click', () => this._handleDeleteClick(this._id));
-    } else {
-      this._deleteButton.classList.add("card__delete-button_hidden");
-    }
-
-
+    this.setupLike();
+    this.setupDeleteButton();
     this._setEventListeners();
 
     return this._element;
