@@ -3,21 +3,20 @@ export default class UserInfo {
     this._profileName = document.querySelector(profileNameSelector);
     this._profileAbout = document.querySelector(profileAboutSelector);
     this._profileAvatar = document.querySelector(profileAvatarSelector);
+    this._userId = null;
   }
 
-  getUserInfo(getUserInfoCallback) {
-    return getUserInfoCallback();
+  getUserInfo() {
+    return {
+      name: this._profileName.textContent,
+      about: this._profileAbout.textContent
+    }
   }
 
-  setUserInfo({ name, about, avatar }, api) {
-    api.setUserInfo(name, about)
-      .then((data) => {
-        this._profileName.textContent = data.name;
-        this._profileAbout.textContent = data.about;
-      });
-    api.setAvatar(avatar)
-      .then((data) => {
-        this._profileAvatar.src = data.avatar;
-    });
+  setUserInfo({ name, about, avatar, _id }) {
+   this._profileName.textContent = name;
+   this._profileAbout.textContent = about;
+   this._profileAvatar.src = avatar;
+   this._userId = _id;
   }
 }
