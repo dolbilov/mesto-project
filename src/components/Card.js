@@ -43,7 +43,6 @@ export default class Card {
   }
 
   generate() {
-
     // setup heading
     this._heading.textContent = this._name;
 
@@ -58,6 +57,9 @@ export default class Card {
       this._likeButton.classList.add("card__like-button_active"); // TODO: is it work?
     }
 
+    this._likeButton.addEventListener("click", () => this._handleLikeClick(this._id));
+
+    this._deleteButton.addEventListener('click', () => this._handleDeleteClick(this._id));
 
     this._setEventListeners();
 

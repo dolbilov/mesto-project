@@ -36,7 +36,10 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
             item,
             "#card",
             userInfo.userId,
-            {} // TODO: finish it
+            {
+              handleLikeClick: api.setLike,
+              handleDeleteClick: api.deleteCard
+            } // TODO: finish it
           );
           const cardElement = card.generate();
           section.addItem(cardElement);
@@ -75,19 +78,16 @@ const newCardPopup = new PopupWithForm(constants.newCardPopupSelector, (evt) => 
       constants.newCardPopupHeadingInput.value,
       constants.newCardPopupLinkInput.value)
     .then((data) => {
-      console.log(data);
       const tempCard = new Card(data,
         "#card",
         userInfo.userId,
         {}
       );
       const cardElement = tempCard.generate();
-      section.add(cardElement);
-      section.renderItems();
+      section.addItem(cardElement);
       newCardPopup.close();
-      // console.log('here');
     })
-    .catch(api.handleError)
+    //.catch(api.handleError)
     .finally(() => setTimeout(() => newCardPopup.renderLoading(false), 1000));
 });
 

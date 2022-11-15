@@ -11,7 +11,7 @@ export default class Api {
     }
   }
 
-  _getData(path, method = "GET", body = null) {
+  _getData = (path, method = "GET", body = null)  => {
     const params = {
       method: method,
       headers: this._config.headers
@@ -44,11 +44,11 @@ export default class Api {
     return this._getData("cards", "POST", { name: name, link: link });
   }
 
-  deleteCard(id) {
+  deleteCard = (id) => {
     return this._getData(`cards/${id}`, "DELETE");
   }
 
-  setLike(id) {
+  setLike = (id) => {
     return this._getData(`cards/likes/${id}`, "PUT");
   }
 
