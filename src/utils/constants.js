@@ -17,7 +17,7 @@ export const selectors = {
   errorClass: "form__error_visible"
 };
 
-export const openedPopupClass = ".popup_opened";
+export const openedPopupClass = "popup_opened";
 
 // Popups selectors
 export const profilePopupSelector = ".popup_type_profile";
@@ -37,8 +37,8 @@ export const newCardPopupForm = newCardPopup.querySelector(selectors.formSelecto
 export const avatarForm = avatarPopup.querySelector(selectors.formSelector);
 
 // Profile popup inputs
-export const profilePopupNameInput = profilePopupForm.querySelector('#name');
-export const profilePopupAboutInput = profilePopupForm.querySelector('#about');
+export const profilePopupNameInput = profilePopupForm.querySelector("#name");
+export const profilePopupAboutInput = profilePopupForm.querySelector("#about");
 
 // Preview popup
 export const previewPopupImageSelector = ".popup__image";

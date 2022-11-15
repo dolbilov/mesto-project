@@ -1,10 +1,31 @@
 export default class Card {
-  constructor(cardObject, selector, handleCardClick) {
-    this._name = cardObject.name;
-    this._link = cardObject.link;
+  constructor(cardObject, selector, userId, { handleImageClick, handleLikeClick, handleDeleteClick }) {
+    this._id = cardObject._id;
     this._likes = cardObject.likes;
+    this._link = cardObject.link;
+    this._name = cardObject.name;
+    this._ownerId = cardObject.owner._id;
+
+    this._userId = userId;
+
     this._selector = selector;
-    this._handleCardClick = handleCardClick;
+
+    this._handleImageClick = handleImageClick;
+    this._handleLikeClick = handleLikeClick;
+    this._handleDeleteClick = handleDeleteClick;
+
+    // card content
+    this._element = this._getElement();
+    this._heading = this._element.querySelector(".card__heading");
+    this._cardImage = this._element.querySelector(".card__image");
+    this._likeCountText = this._element.querySelector(".card__likes-count-text");
+    this._likeButton = this._element.querySelector(".card__like-button");
+    this._deleteButton = this._element.querySelector(".card__delete-button");
+
+  }
+
+  _isLikedByUser() {
+    return this._likes.some(like => like.id === this._userId);
   }
 
   _getElement() {
@@ -16,29 +37,30 @@ export default class Card {
   }
 
   _setEventListeners() {
-
+    this._cardImage.addEventListener("click", this._handleImageClick);
+    this._likeButton.addEventListener("click", this._handleLikeClick);
+    this._deleteButton.addEventListener("click", this._handleDeleteClick);
   }
 
   generate() {
-    const cardElement = this._getElement();
-
-    const heading = cardElement.querySelector(".card__heading");
-    const cardImage = cardElement.querySelector(".card__image");
-    const likeCountText = cardElement.querySelector(".card__likes-count-text");
-    const likeButton = cardElement.querySelector(".card__like-button");
-    const deleteButton = cardElement.querySelector(".card__delete-button");
 
     // setup heading
-    heading.textContent = this._name;
+    this._heading.textContent = this._name;
 
     // setup image
-    cardImage.src = this._link;
-    cardImage.alt = this._name;
-    cardImage.addEventListener("click", this._handleCardClick);
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
+    this._cardImage.addEventListener("click", this._handleImageClick);
 
-    // setup likes count
-    likeCountText.textContent = this._likes.length;
+    // setup like
+    this._likeCountText.textContent = this._likes.length;
+    if (this._isLikedByUser()) {
+      this._likeButton.classList.add("card__like-button_active"); // TODO: is it work?
+    }
 
-    return cardElement;
+
+    this._setEventListeners();
+
+    return this._element;
   }
 }

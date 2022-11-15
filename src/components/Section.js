@@ -1,11 +1,4 @@
 export default class Section {
-  /*
-  @param { items, renderer }:
-    items - list of data to be added;
-    renderer - function that will create and draw data on the page.
-
-  @param containerSelector - selector of container that will store elements.
-   */
   constructor({ items, renderer }, containerSelector) {
     this._renderedItems = items;
     this._renderer = renderer;
@@ -13,7 +6,7 @@ export default class Section {
   }
 
   _clear() {
-    this._container.innerHTML = '';
+    this._container.innerHTML = "";
   }
 
   addItem(element) {
