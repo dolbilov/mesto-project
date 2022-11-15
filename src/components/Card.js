@@ -24,6 +24,10 @@ export default class Card {
 
   }
 
+  removeCard(cardItem) {
+    cardItem.remove();
+  }
+
   _isLikedByUser() {
     return this._likes.some(like => like.id === this._userId);
   }
@@ -59,7 +63,12 @@ export default class Card {
 
     this._likeButton.addEventListener("click", () => this._handleLikeClick(this._id));
 
-    this._deleteButton.addEventListener('click', () => this._handleDeleteClick(this._id));
+    if (this._ownerId === this._userId) {
+      this._deleteButton.addEventListener('click', () => this._handleDeleteClick(this._id));
+    } else {
+      this._deleteButton.classList.add("card__delete-button_hidden");
+    }
+
 
     this._setEventListeners();
 
