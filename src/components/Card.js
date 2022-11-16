@@ -24,10 +24,6 @@ export default class Card {
     this._deleteButton = this._element.querySelector(".card__delete-button");
   }
 
-  removeCard(cardItem) {
-    cardItem.remove();
-  }
-
   setupLike(data) {
     this._likes = data.likes;
     this._likeCountText.textContent = this._likes.length;
