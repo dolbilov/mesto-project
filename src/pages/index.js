@@ -15,6 +15,28 @@ let userInfo;
 let section;
 const api = new Api(constants.config);
 
+
+const createCard = (cardObject) => {
+  const card = new Card(cardObject, "#card", userInfo.userId, {
+    handleImageClick: () => {
+
+    },
+    handleLikeClick: () => {
+
+    },
+    handleDeleteClick: (cardElement, cardID) => {
+      api
+        .deleteCard(cardID)
+        .then(data => {
+          cardElement.remove();
+        })
+        .catch(api.handleError);
+    }
+  });
+
+  return card.generate();
+}
+
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(data => {
     const [profileInfo, cardsInfo] = data;
@@ -32,16 +54,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     section = new Section({
         items: cardsInfo,
         renderer: (item) => {
-          const card = new Card(
-            item,
-            "#card",
-            userInfo.userId,
-            {
-              handleLikeClick: api.setLike,
-              handleDeleteClick: api.deleteCard
-            } // TODO: finish it
-          );
-          const cardElement = card.generate();
+          const cardElement = createCard(item);
           section.addItem(cardElement);
         }
       },
@@ -78,12 +91,7 @@ const newCardPopup = new PopupWithForm(constants.newCardPopupSelector, (evt) => 
       constants.newCardPopupHeadingInput.value,
       constants.newCardPopupLinkInput.value)
     .then((data) => {
-      const tempCard = new Card(data,
-        "#card",
-        userInfo.userId,
-        {}
-      );
-      const cardElement = tempCard.generate();
+      const cardElement = createCard(data);
       section.addItem(cardElement);
       newCardPopup.close();
     })
