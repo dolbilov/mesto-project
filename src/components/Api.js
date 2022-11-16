@@ -7,11 +7,11 @@ export default class Api {
     if (err.status) {
       console.warn(`Ошибка ${err.status}`);
     } else {
-      console.warn("Неизвестная ошибка");
+      console.warn(`Неизвестная ошибка: ${err}`);
     }
   }
 
-  _getData = (path, method = "GET", body = null)  => {
+  _getData = (path, method = "GET", body = null) => {
     const params = {
       method: method,
       headers: this._config.headers
@@ -26,7 +26,7 @@ export default class Api {
         if (res.ok) return res.json();
         return Promise.reject(res);
       });
-  }
+  };
 
   getUserInfo() {
     return this._getData("users/me");
@@ -46,11 +46,11 @@ export default class Api {
 
   deleteCard = (id) => {
     return this._getData(`cards/${id}`, "DELETE");
-  }
+  };
 
   setLike = (id) => {
     return this._getData(`cards/likes/${id}`, "PUT");
-  }
+  };
 
   unsetLike(id) {
     return this._getData(`cards/likes/${id}`, "DELETE");
