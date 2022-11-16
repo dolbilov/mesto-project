@@ -21,8 +21,22 @@ const createCard = (cardObject) => {
     handleImageClick: () => {
 
     },
-    handleLikeClick: () => {
-
+    handleLikeClick: (isLikedByUser, cardID) => {
+      if (isLikedByUser) {
+        api
+          .unsetLike(cardID)
+          .then(data => {
+            card.setupLike(data);
+          })
+          .catch(api.handleError);
+      } else {
+        api
+          .setLike(cardID)
+          .then(data => {
+            card.setupLike(data);
+          })
+          .catch(api.handleError);
+      }
     },
     handleDeleteClick: (cardElement, cardID) => {
       api
@@ -35,7 +49,7 @@ const createCard = (cardObject) => {
   });
 
   return card.generate();
-}
+};
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(data => {

@@ -1,5 +1,6 @@
 export default class Card {
   constructor(cardObject, selector, userId, { handleImageClick, handleLikeClick, handleDeleteClick }) {
+    this._data = cardObject;
     this._id = cardObject._id;
     this._likes = cardObject.likes;
     this._link = cardObject.link;
@@ -27,10 +28,13 @@ export default class Card {
     cardItem.remove();
   }
 
-  setupLike() {
+  setupLike(data) {
+    this._likes = data.likes;
     this._likeCountText.textContent = this._likes.length;
     if (this._isLikedByUser()) {
       this._likeButton.classList.add("card__like-button_active");
+    } else {
+      this._likeButton.classList.remove("card__like-button_active");
     }
   }
 
@@ -67,7 +71,7 @@ export default class Card {
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
 
-    this.setupLike();
+    this.setupLike(this._data);
     this.setupDeleteButton();
     this._setEventListeners();
 
