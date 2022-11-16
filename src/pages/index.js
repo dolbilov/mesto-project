@@ -10,7 +10,6 @@ import Card from "../components/Card";
 import Section from "../components/Section";
 import PopupWithForm from "../components/PopupWithForm";
 import PopupWithImage from "../components/PopupWithImage";
-import { profileAvatar } from "../utils/constants";
 
 let userInfo;
 let section;
@@ -100,7 +99,10 @@ const profilePopup = new PopupWithForm(constants.profilePopupSelector, (evt) => 
 profilePopup.setEventListeners();
 constants.profileEditButton.addEventListener("click", () => {
   profilePopup.setInputValues(userInfo.getUserInfo());
+  profileFormValidator.hideAllInputsErrors();
+  profileFormValidator.toggleButtonState();
   profilePopup.open();
+
 });
 
 
@@ -121,7 +123,11 @@ const newCardPopup = new PopupWithForm(constants.newCardPopupSelector, (evt) => 
     .finally(() => setTimeout(() => newCardPopup.renderLoading(false), 1000));
 });
 newCardPopup.setEventListeners();
-constants.addButton.addEventListener("click", () => newCardPopup.open());
+constants.addButton.addEventListener("click", () => {
+  newCardFormValidator.hideAllInputsErrors();
+  newCardFormValidator.toggleButtonState();
+  newCardPopup.open();
+});
 
 
 // Avatar popup
@@ -140,7 +146,10 @@ const avatarPopup = new PopupWithForm(constants.avatarPopupSelector, (evt) => {
     }, 1000));
 });
 avatarPopup.setEventListeners();
-constants.profileAvatarContainer.addEventListener("click", () => avatarPopup.open());
+constants.profileAvatarContainer.addEventListener("click", () => {
+  avatarFormValidator.hideAllInputsErrors();
+  avatarPopup.open();
+});
 
 
 // Preview popup
@@ -149,23 +158,11 @@ previewPopup.setEventListeners();
 
 
 // Enable validation
-// const profileFormValidator = new FormValidator(constants.selectors, constants.profilePopupForm);
-// const newCardFormValidator = new FormValidator(constants.selectors, constants.newCardPopupForm);
-// const avatarFormValidator = new FormValidator(constants.selectors, constants.newCardPopupForm);
+const profileFormValidator = new FormValidator(constants.selectors, constants.profilePopupForm);
+const newCardFormValidator = new FormValidator(constants.selectors, constants.newCardPopupForm);
+const avatarFormValidator = new FormValidator(constants.selectors, constants.avatarForm);
 
-// profileFormValidator.enableValidation();
-// newCardFormValidator.enableValidation();
-// avatarFormValidator.enableValidation();
+profileFormValidator.enableValidation();
+newCardFormValidator.enableValidation();
+avatarFormValidator.enableValidation();
 
-
-// // Avatar popup event listeners
-// profileAvatarContainer.addEventListener("click", renderProfileAvatarPopup);
-// avatarForm.addEventListener("submit", saveProfileAvatarPopup);
-//
-//
-// // Delete card popup
-// deleteCardPopup.addEventListener("submit", (evt) => {
-//   evt.preventDefault();
-//
-//   deleteCardAfterConfirm();
-// });
