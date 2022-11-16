@@ -18,8 +18,8 @@ const api = new Api(constants.config);
 
 const createCard = (cardObject) => {
   const card = new Card(cardObject, "#card", userInfo.userId, {
-    handleImageClick: () => {
-
+    handleImageClick: (data) => {
+      previewPopup.open(data);
     },
     handleLikeClick: (isLikedByUser, cardID) => {
       if (isLikedByUser) {
