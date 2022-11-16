@@ -49,6 +49,7 @@ export const profileNameSelector = ".profile__name-text";
 export const profileDescriptionSelector = ".profile__description";
 export const profileAvatarContainer = document.querySelector(".profile__image-container");
 export const profileAvatarSelector = ".profile__image";
+export const profileAvatar = profileAvatarContainer.querySelector(profileAvatarSelector);
 export const profileEditButton = document.querySelector(".profile__edit-button");
 
 // Profile popup
@@ -64,9 +65,5 @@ export const newCardPopupSubmitButton = newCardPopupForm.querySelector(selectors
 export const newAvatarLinkInput = avatarForm.querySelector("#avatar-link");
 export const avatarPopupSubmitButton = avatarForm.querySelector(selectors.submitButtonSelector);
 
-// Delete card popup
-export const deleteCardPopup = document.querySelector(".popup_type_delete-card");
-
 export const cardsContainerSelector = ".cards__list";
 
-export const timeoutDelay = 1000;
