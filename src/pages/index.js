@@ -41,9 +41,7 @@ const createCard = (cardObject) => {
     handleDeleteClick: (cardElement, cardID) => {
       api
         .deleteCard(cardID)
-        .then(data => {
-          cardElement.remove();
-        })
+        .then(() => cardElement.remove())
         .catch(api.handleError);
     }
   });
@@ -148,6 +146,7 @@ const avatarPopup = new PopupWithForm(constants.avatarPopupSelector, (evt) => {
 avatarPopup.setEventListeners();
 constants.profileAvatarContainer.addEventListener("click", () => {
   avatarFormValidator.hideAllInputsErrors();
+  avatarFormValidator.toggleButtonState();
   avatarPopup.open();
 });
 
