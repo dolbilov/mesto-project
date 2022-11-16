@@ -79,7 +79,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
   .catch(api.handleError);
 
 
-// Popups
+// Setup profile popup
 const profilePopup = new PopupWithForm(constants.profilePopupSelector, (evt) => {
   evt.preventDefault();
   profilePopup.renderLoading(true);
@@ -96,6 +96,12 @@ const profilePopup = new PopupWithForm(constants.profilePopupSelector, (evt) => 
     .catch(api.handleError)
     .finally(() => setTimeout(() => profilePopup.renderLoading(false), 1000));
 });
+profilePopup.setEventListeners();
+constants.profileEditButton.addEventListener("click", () => {
+  profilePopup.setInputValues(userInfo.getUserInfo());
+  profilePopup.open();
+});
+
 
 const newCardPopup = new PopupWithForm(constants.newCardPopupSelector, (evt) => {
   evt.preventDefault();
@@ -112,6 +118,9 @@ const newCardPopup = new PopupWithForm(constants.newCardPopupSelector, (evt) => 
     //.catch(api.handleError)
     .finally(() => setTimeout(() => newCardPopup.renderLoading(false), 1000));
 });
+newCardPopup.setEventListeners();
+constants.addButton.addEventListener("click", () => newCardPopup.open());
+
 
 const avatarPopup = new PopupWithForm(constants.avatarPopupSelector, (evt) => {
   evt.preventDefault();
@@ -119,16 +128,9 @@ const avatarPopup = new PopupWithForm(constants.avatarPopupSelector, (evt) => {
 });
 
 const previewPopup = new PopupWithImage(constants.previewPopupSelector);
+previewPopup.setEventListeners();
 
-// Set event listeners
-profilePopup.setEventListeners();
-constants.profileEditButton.addEventListener("click", () => {
-  profilePopup.setInputValues(userInfo.getUserInfo());
-  profilePopup.open();
-});
 
-newCardPopup.setEventListeners();
-constants.addButton.addEventListener("click", () => newCardPopup.open());
 
 // Enable validation
 // const profileFormValidator = new FormValidator(constants.selectors, constants.profilePopupForm);
@@ -153,24 +155,7 @@ constants.addButton.addEventListener("click", () => newCardPopup.open());
 //   );
 //
 //   openPopup(newCardPopup);
-// }
-//
-//
-// // New card popup listeners
-// addButton.addEventListener("click", renderNewCardPopup);
-// newCardPopupForm.addEventListener("submit", saveNewCardPopup);
-//
-//
-// // Preview popup
-// function renderPreviewPopup(name, link) {
-//   previewPopupImage.src = link;
-//   previewPopupImage.alt = name;
-//   previewPopupHeading.textContent = name;
-//
-//   openPopup(previewPopup);
-// }
-//
-//
+
 // // Avatar popup functions
 // function renderProfileAvatarPopup() {
 //   // Clear fields
